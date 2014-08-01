@@ -8,7 +8,7 @@
  */
 class CmcDateHelper {
 	
-	private $cocdate; //DateTime
+	private $cmcdate; //DateTime
 	private $dateWeek; //String
 	private $weekStartDate 	= null; //DateTime
 	private $weekEndDate	= null; //DateTime
@@ -18,28 +18,28 @@ class CmcDateHelper {
 	private static $contMark = ' - ';
 	
 	public function __construct($strDate='') {
-		$this->cocdate = new DateTime($strDate); //will set date to now if no date string
+		$this->cmcdate = new DateTime($strDate); //will set date to now if no date string
 	}
 	
 	public function YearLabel() {
-		return $this->cocdate->format('Y');
+		return $this->cmcdate->format('Y');
 	}
 	
 	public function MonthYearLabel() {
-		return $this->cocdate->format('F Y');
+		return $this->cmcdate->format('F Y');
 	}
 	
 	public function ShortMonthYearLabel() {
-		return $this->cocdate->format('M Y');
+		return $this->cmcdate->format('M Y');
 	}
 	
 
 	public function DayMonthYearLabel() {
-		return $this->cocdate->format('j F Y');
+		return $this->cmcdate->format('j F Y');
 	}
 	
 	public function DayShortMonthYearLabel() {
-		return $this->cocdate->format('j M Y');
+		return $this->cmcdate->format('j M Y');
 	}
 	
 	public function WeekLabel() {
@@ -107,7 +107,7 @@ class CmcDateHelper {
 	//week, start and end of week lazily instantiated
 	private function getDateWeek() {
 		if ( $this->dateWeek === null ) {
-			$this->dateWeek = $this->cocdate->format("w");
+			$this->dateWeek = $this->cmcdate->format("w");
 			//Debug::show($this->dateWeek);
 		}
 		return $this->dateWeek;
@@ -116,7 +116,7 @@ class CmcDateHelper {
 	private function getWeekStartDate() {
 		if ( $this->weekStartDate === null ) {
 			$numDateWeek = $this->getDateWeek();
-			$this->weekStartDate = clone $this->cocdate;
+			$this->weekStartDate = clone $this->cmcdate;
 			$this->weekStartDate->modify("-".$this->getDateWeek()." days");
 			//Debug::show($this->weekStartDate);
 		}
