@@ -25,54 +25,54 @@ class CmcDateHelper {
 		return $this->cmcdate->format('Y');
 	}
 	
-	public function MonthYearLabel() {
-		return $this->cmcdate->format('F Y');
+	public function MonthYearLabel($sep=' ') {
+		return $this->cmcdate->format("F{$sep}Y");
 	}
 	
-	public function ShortMonthYearLabel() {
-		return $this->cmcdate->format('M Y');
+	public function ShortMonthYearLabel($sep=' ') {
+		return $this->cmcdate->format("M{$sep}Y");
 	}
 	
 
-	public function DayMonthYearLabel() {
-		return $this->cmcdate->format('j F Y');
+	public function DayMonthYearLabel($sep=' ') {
+		return $this->cmcdate->format("j{$sep}F{$sep}Y");
 	}
 	
 	public function DayShortMonthYearLabel($sep=' ') {
 		return $this->cmcdate->format("j{$sep}M{$sep}Y");
 	}
 	
-	public function WeekLabel() {
+	public function WeekLabel($sep=' ') {
 		//Year and Month Same
 		if ($this->isSameWeekYears() && $this->isSameWeekMonths()) {
 			return $this->getWeekStartDate()->format('j') .self::$contMark.
-					$this->getWeekEndDate()->format('j F Y');
+					$this->getWeekEndDate()->format("j{$sep}F{$sep}Y");
 		//Only Year same
 		} elseif ($this->isSameWeekYears()) { 
-			return $this->getWeekStartDate()->format('j F') .self::$contMark.
-					$this->getWeekEndDate()->format('j F Y');
+			return $this->getWeekStartDate()->format("j{$sep}F") .self::$contMark.
+					$this->getWeekEndDate()->format("j{$sep}F{$sep}Y");
 		}
 		
 		//Month and Year different
-		return $this->getWeekStartDate()->format('j F Y') .self::$contMark.
-				$this->getWeekEndDate()->format('j F Y');
+		return $this->getWeekStartDate()->format("j{$sep}F{$sep}Y") .self::$contMark.
+				$this->getWeekEndDate()->format("j{$sep}F{$sep}Y");
 		
 	}	
 	
-	public function WeekShortMonthLabel() {
+	public function WeekShortMonthLabel($sep=' ') {
 		//Year and Month Same
 		if ($this->isSameWeekYears() && $this->isSameWeekMonths()) {
 			return $this->getWeekStartDate()->format('j') .self::$contMark.
-					$this->getWeekEndDate()->format('j M Y');
+					$this->getWeekEndDate()->format("j{$sep}M{$sep}Y");
 		//Only Year same
 		} elseif ($this->isSameWeekYears()) { 
-			return $this->getWeekStartDate()->format('j M') .self::$contMark.
-					$this->getWeekEndDate()->format('j M Y');
+			return $this->getWeekStartDate()->format("j{$sep}M") .self::$contMark.
+					$this->getWeekEndDate()->format("j{$sep}M{$sep}Y");
 		}
 		
 		//Month and Year different
-		return $this->getWeekStartDate()->format('j M Y') .self::$contMark.
-				$this->getWeekEndDate()->format('j M Y');
+		return $this->getWeekStartDate()->format("j{$sep}M{$sep}Y") .self::$contMark.
+				$this->getWeekEndDate()->format("j{$sep}M{$sep}Y");
 		
 	}
 	
