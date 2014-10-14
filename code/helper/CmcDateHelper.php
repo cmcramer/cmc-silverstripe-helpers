@@ -38,8 +38,8 @@ class CmcDateHelper {
 		return $this->cmcdate->format('j F Y');
 	}
 	
-	public function DayShortMonthYearLabel() {
-		return $this->cmcdate->format('j M Y');
+	public function DayShortMonthYearLabel($sep=' ') {
+		return $this->cmcdate->format("j{$sep}M{$sep}Y");
 	}
 	
 	public function WeekLabel() {
