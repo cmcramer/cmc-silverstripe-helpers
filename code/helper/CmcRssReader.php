@@ -1,6 +1,6 @@
 <?php
 //include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/simplepie.inc'));
-class CmcFeed {
+class CmcRssReader {
 	
 	//public $url;  
 	protected $dateFormat;
@@ -13,7 +13,7 @@ class CmcFeed {
 		$this->dateFormat = $dateFormat;
 	}
 	
-	public function RssItems() {
+	public function FeedItems() {
 		$this->feed->init();
 		$feedList = new ArrayList();
 		
