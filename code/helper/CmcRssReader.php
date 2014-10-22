@@ -2,14 +2,19 @@
 //include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/simplepie.inc'));
 class CmcRssReader {
 	
-	//public $url;  
+	protected $url;  
 	protected $dateFormat;
 	protected $feed;
 	
 	
 	public function __construct($strFeedUrl, $limit=10, $dateFormat="j.M.y") {
-		//$this->url = $strFeedUrl;
-		$this->feed = new SimplePie($strFeedUrl, 0, $limit);
+		$strFeedUrl = preg_replace('#^http(s)?://#', '', $strFeedUrl); //remove http:// or https:// 
+		if ( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ) {
+			$protocol = 'https://';
+		} else {
+			$protocol = 'http://';
+		}
+		$this->url = $protocol.$strFeedUrl;
 		$this->dateFormat = $dateFormat;
 	}
 	
@@ -18,6 +23,7 @@ class CmcRssReader {
 		$feedList = new ArrayList();
 		
 		if ($this->feed->get_items()) {
+			$this->feed = new SimplePie($this->url, 0, $limit);
 			$items = $this->feed->get_items();
 			foreach ($items as $item) {
 				$feedList->push(new ArrayData(array(
