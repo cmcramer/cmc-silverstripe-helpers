@@ -29,5 +29,9 @@ class CmcHtmlTextHelper {
 		return $strHtml;
 	}
 	
+	public static function NoHtmlChop ($strHtml, $maxChars,  $strClose="") {
+		return self::HtmlSummary($strHtml, $maxChars, true, $strClose);
+	}
+	
 	
 }
