@@ -131,7 +131,25 @@ class CmcDateHelper {
 		}
 		return $this->weekEndDate;
 	}
-	
+
+
+
+
+	public static function UsShortRange($sqlDateStart, $sqlDateEnd) {
+		$bdStart = explode("-", $sqlDateStart);
+		$bdEnd  = explode("-", $sqlDateEnd);
+		if ($bdStart == $bdEnd) {
+			$usShortRange = date("M j", mktime(0,0,0,$bdStart[1],$bdStart[2],$bdStart[0]));
+		}
+		elseif ($bdStart[1] == $bdEnd[1]) {
+			$usShortRange = date("M j", mktime(0,0,0,$bdStart[1],$bdStart[2],$bdStart[0])) . ' - '
+					. date ("j, Y", mktime(0,0,0,$bdEnd[1],$bdEnd[2],$bdEnd[0]));
+		} else {
+			$usShortRange = date("M j", mktime(0,0,0,$bdStart[1],$bdStart[2],$bdStart[0])) . ' - '
+					. date ("M j, Y", mktime(0,0,0,$bdEnd[1],$bdEnd[2],$bdEnd[0]));
+		}
+		return $usShortRange;
+	}
 	
 		
 
