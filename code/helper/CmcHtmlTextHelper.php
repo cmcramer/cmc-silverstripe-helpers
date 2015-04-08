@@ -45,6 +45,7 @@ class CmcHtmlTextHelper {
 	 * @param boolean $considerHtml If true, HTML tags would be handled correctly
 	 *
 	 * @return string Trimmed string.
+	 * @url http://alanwhipple.com/2011/05/25/php-truncate-string-preserving-html-tags-words/
 	 */
 	public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {
 	    if ($considerHtml) {
