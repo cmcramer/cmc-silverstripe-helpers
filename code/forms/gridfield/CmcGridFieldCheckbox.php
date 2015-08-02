@@ -8,7 +8,7 @@ class CmcGridFieldCheckbox implements GridField_ColumnProvider {
     
     public function augmentColumns($gridField, &$columns) {
         if ( ! in_array('Select', $columns)) {
-            $columns[] = 'Select';
+            array_unshift($columns, 'Select');
         }
     }
     
@@ -27,7 +27,7 @@ class CmcGridFieldCheckbox implements GridField_ColumnProvider {
     }
     
     public function getColumnAttributes($gridField, $record, $columnName) {
-        return array('class' => 'col-select');
+        return array('class' => 'col-select action');
     }
     
     public function getColumnMetadata($gridField, $columnName) {
