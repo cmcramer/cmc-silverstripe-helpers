@@ -54,7 +54,7 @@ class CmcSiteTwitterFeed extends DataExtension {
         $twitterFeed = false;
         if ($this->owner->TwitterTimelineUrl && $this->owner->TwitterTimelineUrl != '' &&
             $this->owner->TwitterWidgetId && $this->owner->TwitterWidgetId != '' && 
-            $thi->owners->TwitterFeedName && $this->owner->TwitterFeedName != '') {
+            $this->owner->TwitterFeedName && $this->owner->TwitterFeedName != '') {
 
                 $twitterFeed = <<<EOT
                 <a class="twitter-timeline" data-dnt="true" href="{$this->owner->TwitterTimelineUrl}"  data-widget-id="{$this->owner->TwitterWidgetId}" data-chrome="noheader">Tweets {$this->owner->TwitterFeedName}</a>
