@@ -45,7 +45,7 @@ class CmcSiteSocialUrls extends DataExtension {
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab("Root.SiteSocial", new TextField("AthlinksUrl", "Enter the full URL of your company Athlinks"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("BloggerUrl", "Enter the full URL of your company Blogger blog"));
-        $fields->addFieldToTab("Root.SiteSocial", new TextField("FacebookUrl", "Enter the full URL of your company Facebook"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("FaceBookUrl", "Enter the full URL of your company Facebook"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("FlickrUrl", "Enter the full URL of your company Flickr"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("GoogleUrl", "Enter the full URL of your company Google +"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("InstagramUrl", "Enter the full URL of your company Instagram"));
