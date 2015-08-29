@@ -30,7 +30,7 @@
  *
  */
 class CmcSiteTwitterFeed extends DataExtension {
-    public static $db = array(
+    private static $db = array(
         'TwitterTimelineUrl'    => 'Varchar(250)',
         'TwitterWidgetId'       => 'Varchar(250)',
         'TwitterFeedName'       => 'Varchar(250)',

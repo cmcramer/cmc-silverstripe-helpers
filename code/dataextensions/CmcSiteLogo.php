@@ -17,12 +17,12 @@
  *
  */
 class CmcSiteLogo extends DataExtension {
-    public static $has_one = array(
+    private static $has_one = array(
         'LogoImage' => 'Image',
         'Logo2Image' => 'Image',
     );
     
-    public static $db = array(
+    private static $db = array(
         'LogoUrl'       => 'Varchar(250)',
         'LogoUrlTitle'  => 'Varchar(120)',
         'Logo2Url'      => 'Varchar(250)',
