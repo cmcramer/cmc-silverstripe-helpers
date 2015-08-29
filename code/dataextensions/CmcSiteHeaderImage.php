@@ -22,6 +22,6 @@ class CmcSiteHeaderImage extends DataExtension {
     );
     
     public function updateCMSFields(FieldList $fields) {
-        $fields->addFieldsToTab('Root.Main', new UploadField('HeaderImage', 'Choose an image for your site header'));
+        $fields->addFieldsToTab('Root.HeaderImage', new UploadField('HeaderImage', 'Choose an image for your site header'));
     }
 }

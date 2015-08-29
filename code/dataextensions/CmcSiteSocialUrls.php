@@ -33,16 +33,16 @@ class CmcSiteSocialUrls extends DataExtension {
     );
 
     public function updateCMSFields(FieldList $fields) {
-        $fields->addFieldToTab("Root.Main", new TextField("AthlinksUrl", "Enter the full URL of your company Athlinks page"));
-        $fields->addFieldToTab("Root.Main", new TextField("FacebookUrl", "Enter the full URL of your company Facebook page"));
-        $fields->addFieldToTab("Root.Main", new TextField("FlickrUrl", "Enter the full URL of your company Flickr page"));
-        $fields->addFieldToTab("Root.Main", new TextField("GoogleUrl", "Enter the full URL of your company Google page"));
-        $fields->addFieldToTab("Root.Main", new TextField("InstagramUrl", "Enter the full URL of your company Instagram page"));
-        $fields->addFieldToTab("Root.Main", new TextField("StravaUrl", "Enter the full URL of your company Strava page"));
-        $fields->addFieldToTab("Root.Main", new TextField("SkypeUser", "Enter your company Skype username"));
-        $fields->addFieldToTab("Root.Main", new TextField("TwitterUrl", "Enter the full URL of your company Twitter page"));
-        $fields->addFieldToTab("Root.Main", new TextField("VimeoUrl", "Enter the full URL of your company Vimeo page"));
-        $fields->addFieldToTab("Root.Main", new TextField("UltrasignupUrl", "Enter the full URL of your company Ultrasignup page"));
-        $fields->addFieldToTab("Root.Main", new TextField("YoutubeUrl", "Enter the full URL of your company YouTube page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("AthlinksUrl", "Enter the full URL of your company Athlinks page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("FacebookUrl", "Enter the full URL of your company Facebook page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("FlickrUrl", "Enter the full URL of your company Flickr page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("GoogleUrl", "Enter the full URL of your company Google page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("InstagramUrl", "Enter the full URL of your company Instagram page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("StravaUrl", "Enter the full URL of your company Strava page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("SkypeUser", "Enter your company Skype username"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("TwitterUrl", "Enter the full URL of your company Twitter page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("VimeoUrl", "Enter the full URL of your company Vimeo page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("UltrasignupUrl", "Enter the full URL of your company Ultrasignup page"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("YoutubeUrl", "Enter the full URL of your company YouTube page"));
     }
 }
