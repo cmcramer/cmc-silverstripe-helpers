@@ -52,12 +52,12 @@ class CmcSiteTwitterFeed extends DataExtension {
     
     public function CmcTwitterFeed() {
         $twitterFeed = false;
-        if ($this->owner->TwitterTimelineUrl && $this->TwitterTimelineUrl != '' &&
-            $this->TwitterWidgetId && $this->TwitterWidgetId != '' && 
-            $this->TwitterFeedName && $this->TwitterFeedName != '') {
+        if ($this->owner->TwitterTimelineUrl && $this->owner->TwitterTimelineUrl != '' &&
+            $this->owner->TwitterWidgetId && $this->owner->TwitterWidgetId != '' && 
+            $thi->owners->TwitterFeedName && $this->owner->TwitterFeedName != '') {
 
                 $twitterFeed = <<<EOT
-                <a class="twitter-timeline" data-dnt="true" href="{$this->TwitterTimelineUrl}"  data-widget-id="{$this->TwitterWidgetId}" data-chrome="noheader">Tweets {$this->TwitterFeedName}</a>
+                <a class="twitter-timeline" data-dnt="true" href="{$this->owner->TwitterTimelineUrl}"  data-widget-id="{$this->owner->TwitterWidgetId}" data-chrome="noheader">Tweets {$this->owner->TwitterFeedName}</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 EOT;
         }
