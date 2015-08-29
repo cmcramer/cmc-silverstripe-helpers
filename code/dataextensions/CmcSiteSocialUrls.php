@@ -67,7 +67,7 @@ class CmcSiteSocialUrls extends DataExtension {
     public function CmcSiteSocialBlock() {
         $htmlSocialBlock = '';
         
-        foreach ($this->db as $fieldName => $dataType) {
+        foreach (self::$db as $fieldName => $dataType) {
             if (isset($this->owner->$fieldName) && $this->owner->$fieldName != '') {
                 $htmlSocialBlock .= '<span class="social-icon">'.$this->CmcSocialIconUrl($fieldName).'</span>';
             }
