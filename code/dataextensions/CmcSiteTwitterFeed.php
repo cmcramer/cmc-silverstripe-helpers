@@ -29,7 +29,7 @@
  *          $CmcTwitterFeed
  *
  */
-class CmcSiteSocialUrls extends DataExtension {
+class CmcSiteTwitterFeed extends DataExtension {
     public static $db = array(
         'TwitterTimelineUrl'    => 'Varchar(250)',
         'TwitterWidgetId'       => 'Varchar(250)',
