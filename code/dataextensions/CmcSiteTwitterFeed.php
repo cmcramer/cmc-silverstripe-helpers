@@ -37,8 +37,8 @@ class CmcSiteTwitterFeed extends DataExtension {
     );
 
     public function updateCMSFields(FieldList $fields) {
-        $fields->addFieldToTab("Root.Main", new TextField("TwitterTimelineUrl", "Enter the full Twitter Timeline URL"));
-        $fields->addFieldToTab("Root.Main", new TextField("TwitterWidgetId", "Enter the Twitter Widget ID"));
+        $fields->addFieldToTab("Root.TwitterWidget", new TextField("TwitterTimelineUrl", "Enter the full Twitter Timeline URL"));
+        $fields->addFieldToTab("Root.TwitterWidget", new TextField("TwitterWidgetId", "Enter the Twitter Widget ID"));
         
         $twitterFeedNameField = TextField::create("TwitterFeedName", "Enter Twitter Feed Name (including by/from)")
             ->setDescription('Fields for this DataObject correspond to these parts of the code from the Twitter Widget<br><br>
@@ -47,7 +47,7 @@ class CmcSiteTwitterFeed extends DataExtension {
                 &lt;script&gt;....$lt;&#47;script&gt;</code>
                 <br><br>Include "by&#47;from" in TwitterFeedName field!!');
         
-        $fields->addFieldToTab("Root.Main", $twitterFeedNameField);
+        $fields->addFieldToTab("Root.TwitterWidget", $twitterFeedNameField);
     }
     
     public function CmcTwitterFeed() {
