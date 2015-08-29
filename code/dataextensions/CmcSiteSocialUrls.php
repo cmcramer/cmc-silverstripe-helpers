@@ -60,7 +60,7 @@ class CmcSiteSocialUrls extends DataExtension {
         $fields->addFieldToTab("Root.SiteSocial", new TextField("VimeoUrl", "Enter the full URL of your company Vimeo"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("UltrasignupUrl", "Enter the full URL of your company Ultrasignup"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("WordpressUrl", "Enter the full URL of your company Wordpress blog"));
-        $fields->addFieldToTab("Root.SiteSocial", new TextField("YoutubeUrl", "Enter the full URL of your company YouTube"));
+        $fields->addFieldToTab("Root.SiteSocial", new TextField("YouTubeUrl", "Enter the full URL of your company YouTube"));
     }
     
     
