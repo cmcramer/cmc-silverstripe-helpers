@@ -84,7 +84,7 @@ class CmcSiteSocialUrls extends DataExtension {
     public function CmcSocialIconUrl($fieldName) {
         $htmlSocialUrl = <<<EOT
         <a href="{$this->owner->$fieldName}" title="{$this->CmcSocialName($fieldName)}">
-            <img src="{$this->CmcSocialIcon($fieldName)} alt="{$this->CmcSocialName($fieldName)}"></img>
+            <img src="{$this->CmcSocialIcon($fieldName)}" alt="{$this->CmcSocialName($fieldName)}"></img>
         </a>
 EOT;
         return $htmlSocialUrl;
