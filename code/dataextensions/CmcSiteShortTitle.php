@@ -27,10 +27,4 @@ class CmcSiteShortTitle extends DataExtension {
         $fields->addFieldToTab("Root.Main", new TextField("ShortTitle", "Site Short Title"));
     }
     
-//     public function CmcSiteShortTitle() {
-//         if ($this->owner->SiteShortTitle && $this->owner->SiteShortTitle != '') {
-//             return $this->owner->SiteShortTitle;
-//         }
-//         return '';
-//     }
 }
