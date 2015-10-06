@@ -1,0 +1,16 @@
+CmcExternalLinkList:
+  TestList:
+  	Title: External Links
+CmcExternalLink:
+  link1:
+    Title: NOAA
+    Description: Current Conditions at Morrisville
+    Url: http://weather.noaa.gov/weather/current/KMVL.html
+  link2:
+    Title: Accuweather
+    Description: 
+    Url: http://wwwa.accuweather.com/index-forecast.asp?partner=accuweather&traveler=0&zipcode=05827&u=1
+  link3:
+    Title: Yahoo Weather
+    Description: 
+    Url: http://weather.yahoo.com/forecast/USVT0052_f.html
