@@ -1,0 +1,13 @@
+CmcSeason:
+  season1:
+    Title: 2015-16 Nordic Season	
+    StartDate: 2015-11-02
+    EndDate:
+  season2:
+    Title: 2014-15 Nordic Season
+    StartDate: 2014-11-01
+    EndDate: 2015-05-10
+  season3:
+    Title: 2014-15 Nordic Season Alt
+    StartDate: 2015-11-01
+    EndDate: 2015-05-10
