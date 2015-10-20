@@ -6,7 +6,7 @@ class CmcYouTubeEmbed extends DataObject {
     
     
     private static $db = array(
-        'Title'     => 'Varchar(255)',
+        'YouTubeTitle'     => 'Varchar(255)',
         'YouTubeId' => 'Varchar(100)',
         'Width'     => 'Int',
         'Height'    => 'Int',
@@ -16,11 +16,11 @@ class CmcYouTubeEmbed extends DataObject {
         
     
     private static $summary_fields = array(
-        'Title'                     => 'YouTube Video',
+        'YouTubeTitle'                     => 'YouTube Video',
     );
     
     private static $default_sort = array(
-        'Title',
+        'YouTubeTitle',
     );
     
     
@@ -39,6 +39,10 @@ class CmcYouTubeEmbed extends DataObject {
         'AutoPlay'  => true,
         'ShowInfo'  => false,
     );
+    
+    public function getTitle() {
+        return $this->YouTubeTitle;
+    }
     
     public function WatchOnYouTubeUrl() {
         $strUrl = "https://www.youtube.com/watch?v={$this->YouTubeId}";
