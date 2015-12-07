@@ -13,6 +13,10 @@ class CmcYouTubeEmbed extends DataObject {
         'AutoPlay'  => 'CmcBoolean',
         'ShowInfo'  => 'CmcBoolean',
     );
+    
+    private static $has_one = array(
+        'PageWithVideo' => 'Page',
+    );
         
     
     private static $summary_fields = array(
@@ -69,4 +73,6 @@ EOT;
         
         return $strHtml;
     }
+
+
 }
