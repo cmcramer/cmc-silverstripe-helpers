@@ -44,6 +44,21 @@ class CmcYouTubeEmbed extends DataObject {
         'ShowInfo'  => false,
     );
     
+    //These allow Content Editors who didn't add trails
+    //view, edit and delete them
+    public function canView($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canEdit($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    //     public function canDelete($member = null) {
+    //         return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    //     }
+    //     public function canCreate($member = null) {
+    //         return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    //     }
+    
     public function getTitle() {
         return $this->YouTubeTitle;
     }
