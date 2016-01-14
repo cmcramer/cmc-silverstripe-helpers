@@ -6,7 +6,7 @@ class CmcXmlWeatherWidget extends DataObject {
     
     private static $_widget_cache_exp_sec = 0;
     //in test mode to refresh xml caches, delete or rename cache files
-    private static $_widget_test_mode = true; //do this to cache XML files for testing
+    private static $_widget_test_mode = false; //do this to cache XML files for testing
     private static $_xml_cache_prefix = 'test-';
   
     private $_objWsXml; //Weather Station SimpleXml Object
