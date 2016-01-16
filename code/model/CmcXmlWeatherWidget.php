@@ -5,7 +5,7 @@ class CmcXmlWeatherWidget extends DataObject {
     private static $plural_name = 'Weather Widgets';
     
     private static $_widget_cache_exp_sec = 0;
-    //in test mode to refresh xml caches, delete or rename cache files
+    //in TEST MODE to REFRESH xml caches, DELETE or rename cache files
     private static $_widget_test_mode = false; //do this to cache XML files for testing
     private static $_xml_cache_prefix = 'test-';
   
@@ -61,6 +61,7 @@ class CmcXmlWeatherWidget extends DataObject {
             $this->MaxCallsPerDay = self::$defaults['MaxCallsPerDay'];
         }
         self::$_widget_cache_exp_sec = floor((24 * 60 * 60) / $this->MaxCallsPerDay);
+        return self::$_widget_cache_exp_sec;
     }
     
     protected function getFullCachePath(){
@@ -104,6 +105,7 @@ class CmcXmlWeatherWidget extends DataObject {
      
                     
     public function WeatherWidgetHtml() {
+        
         if ($this->CacheFile == '') {
             return false;
         }
@@ -111,32 +113,39 @@ class CmcXmlWeatherWidget extends DataObject {
         $this->_objWsXmlUrl = $this->getWeatherStationUrl();
         $this->_objWuXmlUrl = $this->getWundergroundUrl();
         
-
-        if (self::$_widget_test_mode) { //write xml cacheFiles
-            $this->checkXmlCache($this->getFullCachePath().self::$_xml_cache_prefix.'weatherstation.xml',$this->_objWsXmlUrl);
-            $this->checkXmlCache($this->getFullCachePath().self::$_xml_cache_prefix.'wunderground.xml', $this->_objWuXmlUrl);
-        }
-     
-        
+        //Check if Server time and File time are copacetic
+        //echo "Server time: ".date('M d, Y H:i', time()). "<br>" ."File time: ".date('M d, Y H:i', filemtime($cacheFile));
+            
         if (!file_exists($cacheFile) ||
             (time() - filemtime($cacheFile) >= $this->getCacheExpiration()) ) { //Refresh sticker cache
-                
+
+            //echo "<br>Cache needs refreshing";
+            
                 if (self::$_widget_test_mode) { //load weather data from cached xml
                     //Use Cached xml for testing other data to reduce WU calls.
+                    
+                    //echo "<br>Cache test mode - check that cached XML Files exist, create if not";
+                    $this->checkXmlCache($this->getFullCachePath().self::$_xml_cache_prefix.'weatherstation.xml',$this->_objWsXmlUrl);
+                    $this->checkXmlCache($this->getFullCachePath().self::$_xml_cache_prefix.'wunderground.xml', $this->_objWuXmlUrl);
+                    
+                    //echo "<br>Cache test mode - load XML objects from cache";
                     $this->_objWsXml = simplexml_load_file($this->getFullCachePath().self::$_xml_cache_prefix.'weatherstation.xml');
                     $this->_objWuXml = simplexml_load_file($this->getFullCachePath().self::$_xml_cache_prefix.'wunderground.xml');
                 
                 } else { //Not caching xml, just grab new xml from URLs and cache HTML for 
+                    //echo "<br>NOT test mode - Grabbing new XML";
                     $this->_objWsXml = simplexml_load_file($this->_objWsXmlUrl);
                     $this->_objWuXml = simplexml_load_file($this->_objWuXmlUrl);
+                    //echo "<br>Cache test mode - load XML objects from cache";
                 }
                 
+                //echo "<br>Refresh  HTML Cache";
                 $strHtml = $this->StickerHtml($this->_objWsXml, $this->_objWuXml);
                 file_put_contents($cacheFile, $strHtml);
                 return $strHtml;
         }
         
-        //didn't refresh sticker cache
+        //echo "<br>Read HTML Cache<br><br>";
         return file_get_contents($cacheFile);
     }
     
