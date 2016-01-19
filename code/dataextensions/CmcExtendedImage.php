@@ -35,9 +35,23 @@ class CmcExtendedImage extends DataExtension {
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateLeft', 'Rotate 90&deg; Counter Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateRight', 'Rotate 90&deg; Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('Rotate180', 'Rotate 180&deg;'));
-        //$fields->addFieldToTab('Root.Main', new LiteralField('Exif', $this->ExifDecimalLatitude()));
-        
+        //$fields->addFieldToTab('Root.Main', new LiteralField('Exif', $this->ExifDecimalLatitude()));   
     }
+    
+
+    public function canView($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canEdit($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canDelete($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canCreate($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    
     
     public function PhotoDateNice($format="M j, Y G:i") {
         if ($this->owner->PhotoTime == '') {
