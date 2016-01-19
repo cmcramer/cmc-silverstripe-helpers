@@ -20,6 +20,7 @@ class CmcExtendedImage extends DataExtension {
         'PhotoTime'     => 'Int',
         'PhotoLatitude' => 'Decimal(10,8)',
         'PhotoLongitude'=> 'Decimal(11,8)',
+        'Camera'   => 'Varchar(200)',
     );
     
     private static $_has_written = false;
@@ -28,11 +29,13 @@ class CmcExtendedImage extends DataExtension {
     
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab('Root.Main', new ReadonlyField('Date', 'Date', $this->PhotoDateNice()));
-        $fields->addFieldToTab('Root.Main', new ReadonlyField('Latitude', 'Latitude', $this->PhotoLatitude));
-        $fields->addFieldToTab('Root.Main', new ReadonlyField('Longitude', 'Longitude', $this->PhotoLongitude));
+        $fields->addFieldToTab('Root.Main', new ReadonlyField('Latitude', 'Latitude', $this->owner->PhotoLatitude));
+        $fields->addFieldToTab('Root.Main', new ReadonlyField('Longitude', 'Longitude', $this->owner->PhotoLongitude));
+        $fields->addFieldToTab('Root.Main', new ReadonlyField('Camera', 'Camera', $this->owner->Camera));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateLeft', 'Rotate 90&deg; Counter Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateRight', 'Rotate 90&deg; Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('Rotate180', 'Rotate 180&deg;'));
+        $fields->addFieldToTab('Root.Main', new LiteralField('Exif', $this->ExifDecimalLatitude()));
         
     }
     
@@ -53,6 +56,10 @@ class CmcExtendedImage extends DataExtension {
             if ($this->ExifLatitude() && $this->ExifDecimalLongitude()) {
                 $this->owner->PhotoLatitude = $this->ExifDecimalLatitude();
                 $this->owner->PhotoLongitude = $this->ExifDecimalLongitude();
+            }
+            //If Camera Model exists in Exif info save it
+            if ($this->ExifCamera() != '') {
+                $this->owner->Camera = $this->ExifCamera();
             }
             
             if (isset($_POST["RotateLeft"]) && $_POST["RotateLeft"] == 1) {
@@ -150,24 +157,57 @@ class CmcExtendedImage extends DataExtension {
      * @return int Timestamp
      */
     public function ExifTime() {
-        if ($this->getExifValue('DateTime') && $this->getExifValue('DateTime') != '') {
+        if ($this->getExifValue('DateTimeOriginal') && $this->getExifValue('DateTimeOriginal') != '') {
+            return strtotime($this->getExifValue('DateTimeOriginal'));
+        } elseif ($this->getExifValue('DateTime') && $this->getExifValue('DateTime') != '') {
             return strtotime($this->getExifValue('DateTime'));
-        } else {
-            return time();
-        }
+        } 
+        return time();
+        
+    }
+    /**
+     * GPS Camera Info
+     * @return string
+     */
+    public function ExifCamera() {
+        return $this->getExifValue('Model');
     }
     
+    /**
+     * GPS Exif data
+     * @return Ambigous <boolean, array>
+     */
     public function ExifLatitude() {
-        return $this->getExifValue("GPS['GPSLatitude']");
+        if ($this->getExifValue('GPSLatitude') && $this->getExifValue('GPSLatitude') != '') {
+            return $this->getExifValue('GPSLatitude');
+        } elseif ($this->getExifValue("GPS['GPSLatitude']") && $this->getExifValue("GPS['GPSLatitude']") != '') {
+            return $this->getExifValue("GPS['GPSLatitude']");
+        }
+        return false;
     }
     public function ExifLatitudeRef() {
-        return $this->getExifValue("GPS['GPSLatitudeRef']");
+        if ($this->getExifValue('GPSLatitudeRef') && $this->getExifValue('GPSLatitudeRef') != '') {
+            return $this->getExifValue('GPSLatitudeRef');
+        } elseif ($this->getExifValue("GPS['GPSLatitudeRef']") && $this->getExifValue("GPS['GPSLatitudeRef']") != '') {
+            return $this->getExifValue("GPS['GPSLatitudeRef']");
+        }
+        return false;
     }
     public function ExifLongitude() {
-        return $this->getExifValue("GPS['GPSLongitude']");
+        if ($this->getExifValue('GPSLongitude') && $this->getExifValue('GPSLongitude') != '') {
+            return $this->getExifValue('GPSLongitude');
+        } elseif ($this->getExifValue("GPS['GPSLongitude']") && $this->getExifValue("GPS['GPSLongitude']") != '') {
+            return $this->getExifValue("GPS['GPSLongitude']");
+        }
+        return false;
     }
     public function ExifLongitudeRef() {
-        return $this->getExifValue("GPS['GPSLongitudeRef']");
+        if ($this->getExifValue('GPSLongitudeRef') && $this->getExifValue('GPSLongitudeRef') != '') {
+            return $this->getExifValue('GPSLongitudeRef');
+        } elseif ($this->getExifValue("GPS['GPSLongitudeRef']") && $this->getExifValue("GPS['GPSLongitudeRef']") != '') {
+            return $this->getExifValue("GPS['GPSLongitudeRef']");
+        }
+        return false;
     }
     public function ExifDecimalLatitude() {
         if (! $this->ExifLatitude() ) {
@@ -181,6 +221,7 @@ class CmcExtendedImage extends DataExtension {
         }
         return CmcGPSHelper::DecimalLongitude($this->ExifLongitude(), $this->ExifLongitudeRef());
     }
+    
     
     
     public function ImageFullPath() {
