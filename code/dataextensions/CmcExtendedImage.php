@@ -8,11 +8,18 @@
  * @see - https://github.com/thisisbd/silverstripe-fixjpeg-orientation/tree/master/code
  * @see - https://github.com/axllent/silverstripe-scaled-uploads/blob/master/code/ScaledUploads.php
  * 
+ * To use Rotate CheckBoxes in Edit window
+ *  - Check rotation desired (only one)
+ *  - Click "Save" in Edit box
+ *  - Click "Save" at bottom of page
+ * 
  */
 class CmcExtendedImage extends DataExtension {
 
     private static $db = array(
-        'PhotoTime'    => 'Int',
+        'PhotoTime'     => 'Int',
+        'PhotoLatitude' => 'Decimal(10,8)',
+        'PhotoLongitude'=> 'Decimal(11,8)',
     );
     
     private static $_has_written = false;
@@ -21,6 +28,8 @@ class CmcExtendedImage extends DataExtension {
     
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab('Root.Main', new ReadonlyField('Date', 'Date', $this->PhotoDateNice()));
+        $fields->addFieldToTab('Root.Main', new ReadonlyField('Latitude', 'Latitude', $this->PhotoLatitude));
+        $fields->addFieldToTab('Root.Main', new ReadonlyField('Longitude', 'Longitude', $this->PhotoLongitude));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateLeft', 'Rotate 90&deg; Counter Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateRight', 'Rotate 90&deg; Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('Rotate180', 'Rotate 180&deg;'));
@@ -36,8 +45,14 @@ class CmcExtendedImage extends DataExtension {
     
     public function onBeforeWrite() {
         if (! self::$_has_written ) {
+            //If DateTime exists in Exif info save it
             if ($this->ExifTime() != '') {
                 $this->owner->PhotoTime = $this->ExifTime();
+            }
+            //If GPS data exists in Exif data save it
+            if ($this->ExifLatitude() && $this->ExifDecimalLongitude()) {
+                $this->owner->PhotoLatitude = $this->ExifDecimalLatitude();
+                $this->owner->PhotoLongitude = $this->ExifDecimalLongitude();
             }
             
             if (isset($_POST["RotateLeft"]) && $_POST["RotateLeft"] == 1) {
@@ -142,7 +157,30 @@ class CmcExtendedImage extends DataExtension {
         }
     }
     
-
+    public function ExifLatitude() {
+        return $this->getExifValue("GPS['GPSLatitude']");
+    }
+    public function ExifLatitudeRef() {
+        return $this->getExifValue("GPS['GPSLatitudeRef']");
+    }
+    public function ExifLongitude() {
+        return $this->getExifValue("GPS['GPSLongitude']");
+    }
+    public function ExifLongitudeRef() {
+        return $this->getExifValue("GPS['GPSLongitudeRef']");
+    }
+    public function ExifDecimalLatitude() {
+        if (! $this->ExifLatitude() ) {
+            return false;
+        }
+        return CmcGPSHelper::DecimalLatitude($this->ExifLatitude(), $this->ExifLatitudeRef());
+    }
+    public function ExifDecimalLongitude() {
+        if (! $this->ExifLongitude() ) {
+            return false;
+        }
+        return CmcGPSHelper::DecimalLongitude($this->ExifLongitude(), $this->ExifLongitudeRef());
+    }
     
     
     public function ImageFullPath() {
@@ -194,5 +232,8 @@ class CmcExtendedImage extends DataExtension {
     public function RotateRight() {
         return $this->RotateImage(270);
     }
+    
+    
+    
     
 }
