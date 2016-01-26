@@ -35,7 +35,6 @@ class CmcExtendedImage extends DataExtension {
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateLeft', 'Rotate 90&deg; Counter Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('RotateRight', 'Rotate 90&deg; Clockwise'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('Rotate180', 'Rotate 180&deg;'));
-        //$fields->addFieldToTab('Root.Main', new LiteralField('Exif', $this->ExifDecimalLatitude()));   
     }
     
 
