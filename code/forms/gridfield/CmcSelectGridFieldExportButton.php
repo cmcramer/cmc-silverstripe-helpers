@@ -98,7 +98,7 @@ class CmcSelectGridFieldExportButton extends GridFieldExportButton {
     
     
     /**
-     * Override these methods so there action is different than Print All Button
+     * Override these methods so the action is different than Print All Button
      * 
      * Change action in new GridField_FormAction in getHTMLFragments
      */

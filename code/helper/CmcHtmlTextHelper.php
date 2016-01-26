@@ -4,7 +4,7 @@
  * @author cmc
  *
  * SilverStripe's summary and text chopping functions delete all HTML.
- * These functions retain HTML
+ * These functions attempt to retain HTML, unless stripTags=true
  */
 class CmcHtmlTextHelper {
 	
@@ -18,13 +18,6 @@ class CmcHtmlTextHelper {
 		//Debug::show($strHtml);
 		
 		if (strlen($strHtml) > $maxChars) {
-// 			$strHtml = substr($strHtml, 0, $maxChars-1);
-// 			$lastSpace = strrpos($strHtml, " ");
-// 			$strHtml = substr($strHtml, 0, $lastSpace);
-// 			if (substr($strHtml, $lastSpace-1, 1) == ',') {
-// 				$strHtml = substr($strHtml, 0, $lastSpace-1);
-// 			}
-// 			$strHtml = $strHtml . $strClose;
             $strHtml = self::truncateHtml($strHtml, $maxChars, $strClose);
 		}
 		return $strHtml;

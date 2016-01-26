@@ -29,7 +29,7 @@ Helpers (call public static functions)
 	- CmcHtmlTextHelper - various helper functions for chopping HTML strings
 	- CmcNumberFormat - helper for formatting numbers
 	- CmcQuickCache - helper for caching data read from third party web services
-	- CmcStringHelper - functions for formatting strings
+	- CmcStringHelper - functions for cleaning and comparing strings
 
 Model (DataObjects)
 	- CmcExternalLink - DataObject with Title, Description, Url field for saving external links. Used with LinkList
@@ -125,6 +125,7 @@ SiteConfig:
 5) Use Helpers by calling public static functions
 ```
 CmcHtmlTextHelper::HtmlSummary ($strHtml, 300);
+CmcNumberFormat::NiceFraction ($decimalValue);
 ```
 
 6) Add DataObjects to your own Page Classes and Data

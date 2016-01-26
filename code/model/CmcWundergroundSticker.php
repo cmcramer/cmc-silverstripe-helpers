@@ -5,9 +5,9 @@ class CmcWundergroundSticker extends DataObject {
     private static $plural_name = 'Wunderground Sticker';
     
     //WidgetUrl
-    //http://www.wunderground.com/swf/pws_mini_rf_nc.swf?station=KVTCRAFT2&freq=2.5&units=english&lang=EN
+    //http://www.wunderground.com/swf/pws_mini_rf_nc.swf?station=<WundergroundStation>&freq=2.5&units=english&lang=EN
     //NOAA Url
-    //http://forecast.weather.gov/MapClick.php?lat=44.66763&lon=-72.3621784&unit=0&lg=english&FcstType=graphical
+    //http://forecast.weather.gov/MapClick.php?lat=<DecLat>&lon=<DecLong>&unit=0&lg=english&FcstType=graphical
     //NOAA UrlLabel ExtLabel
     //  NOAA Weather Forecast Graph
     private static $db = array(
@@ -55,18 +55,18 @@ class CmcWundergroundSticker extends DataObject {
      * Optional WeatherWidgets
      * 
      * For updated Widgets go to http://www.wunderground.com/ 
-     *  and search for KVTCRAFT2
+     *  and search for <WundergroundStation>
      * 
      * Fahrenheit/MPH
-     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=KVTCRAFT2"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250&weatherstationcount=KVTCRAFT2" width="250" height="150" border="0" alt="Weather Underground PWS KVTCRAFT2" /></a>
+     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=<WundergroundStation>"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250&weatherstationcount=<WundergroundStation>" width="250" height="150" border="0" alt="Weather Underground PWS <WundergroundStation>" /></a>
      * Celsius/KPH
-     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=KVTCRAFT2"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250_metric&weatherstationcount=KVTCRAFT2" width="250" height="150" border="0" alt="Weather Underground PWS KVTCRAFT2" /></a>
+     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=<WundergroundStation>"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250_metric&weatherstationcount=<WundergroundStation>" width="250" height="150" border="0" alt="Weather Underground PWS <WundergroundStation>" /></a>
      * Fahrenheit and Celsius
-     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=KVTCRAFT2"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250_both&weatherstationcount=KVTCRAFT2" width="250" height="150" border="0" alt="Weather Underground PWS KVTCRAFT2" /></a>
+     * <a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=<WundergroundStation>"><img src="http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250_both&weatherstationcount=<WundergroundStation>" width="250" height="150" border="0" alt="Weather Underground PWS <WundergroundStation>" /></a>
      * 300x100 with forecast
-     * <span style="display: block !important; width: 320px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:05826.1.99999&bannertypeclick=wu_clean2day" title="Craftsbury, Vermont Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_cond&pwscode=KVTCRAFT2&ForcedCity=Craftsbury&ForcedState=VT&zip=05826&language=EN" alt="Find more about Weather in Craftsbury, VT" width="300" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:05826.1.99999&bannertypeclick=wu_clean2day" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
+     * <span style="display: block !important; width: 320px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:05826.1.99999&bannertypeclick=wu_clean2day" title=" Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_cond&pwscode=<WundergroundStation>&ForcedCity=<City>&ForcedState=<ST>&zip=05826&language=EN" alt="Find more about Weather in <City>, <ST>" width="300" /></a><br><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:05826.1.99999&bannertypeclick=wu_clean2day" title="Get latest Weather Forecast updates" style="font-family: sans-serif; font-size: 12px" target="_blank">Click for weather forecast</a></span>
      * Night them with Sunrise/Sunset
-     * <span style='display:block !important; width: 276px; text-align: center; font-family: sans-serif; font-size: 12px;'><a href='http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Craftsbury, VT' title='Craftsbury, VT Weather Forecast'><img src='http://weathersticker.wunderground.com/weathersticker/sunandmoon/language/english/US/VT/Craftsbury.gif' alt='Find more about Weather in Craftsbury, VT' /></a><br><a href='http://www.wunderground.com' title='Get latest Weather Forecast updates' style='font-family: sans-serif; font-size: 12px;'>Click for weather forecast</a></span>
+     * <span style='display:block !important; width: 276px; text-align: center; font-family: sans-serif; font-size: 12px;'><a href='http://www.wunderground.com/cgi-bin/findweather/getForecast?query=<City>, <ST>' title='<City>, <ST> Weather Forecast'><img src='http://weathersticker.wunderground.com/weathersticker/sunandmoon/language/english/US/<ST>/<City>.gif' alt='Find more about Weather in' /></a><br><a href='http://www.wunderground.com' title='Get latest Weather Forecast updates' style='font-family: sans-serif; font-size: 12px;'>Click for weather forecast</a></span>
      * 
      * @return HTML string
      * 

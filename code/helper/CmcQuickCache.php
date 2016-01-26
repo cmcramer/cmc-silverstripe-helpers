@@ -1,7 +1,7 @@
 <?php
 /**
  * Class providing static functions for simple caching of external data
- *  - make sure path where files are written as write access enabled
+ *  - make sure path where files are written has write access enabled
  *  
  * @author cmc
  *
