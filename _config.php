@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('HELPER_MODULE_DIR')) {
-     define('HELPER_MODULE_DIR', basename(dirname(__FILE__)));
+if ( ! defined('CMC_HELPER_MODULE_DIR')) {
+     define('CMC_HELPER_MODULE_DIR', basename(dirname(__FILE__)));
 }
 

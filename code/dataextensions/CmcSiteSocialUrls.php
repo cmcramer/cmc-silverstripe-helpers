@@ -15,7 +15,7 @@
  *      In template
  *
  *          <a href="$SiteConfig.FacebookUrl">Visit my facebook page</a>
- *          
+ *
  *  @todo change to offer dropdown with list of Social Types and field for URL with plus button to add as needed
  *
  */
@@ -40,7 +40,7 @@ class CmcSiteSocialUrls extends DataExtension {
         'WordpressUrl'  => 'Varchar(250)',
         'YouTubeUrl'    => 'Varchar(250)',
     );
-    
+
 
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab("Root.SiteSocial", new TextField("AthlinksUrl", "Enter the full URL of your company Athlinks"));
@@ -62,40 +62,40 @@ class CmcSiteSocialUrls extends DataExtension {
         $fields->addFieldToTab("Root.SiteSocial", new TextField("WordpressUrl", "Enter the full URL of your company Wordpress blog"));
         $fields->addFieldToTab("Root.SiteSocial", new TextField("YouTubeUrl", "Enter the full URL of your company YouTube"));
     }
-    
-    
+
+
     public function CmcSiteSocialBlock() {
         $htmlSocialBlock = '';
-        
+
         foreach (self::$db as $fieldName => $dataType) {
             if (isset($this->owner->$fieldName) && $this->owner->$fieldName != '') {
                 $htmlSocialBlock .= '<span class="social-icon">'.$this->CmcSocialIconUrl($fieldName).'</span>';
             }
         }
-        
+
         if ($htmlSocialBlock != '') {
             $htmlSocialBlock = '<div class="social-icon-block">'.$htmlSocialBlock.'</div>';
         }
-          
+
         return $htmlSocialBlock;
     }
-    
-    
+
+
     public function CmcSocialIconUrl($fieldName) {
         $htmlSocialUrl = <<<EOT
         <a href="{$this->owner->$fieldName}" title="{$this->CmcSocialName($fieldName)}"><img src="{$this->CmcSocialIcon($fieldName)}" alt="{$this->CmcSocialName($fieldName)}"></img></a>
 EOT;
         return $htmlSocialUrl;
     }
-    
+
     public function CmcSocialIcon($fieldName) {
-        return HELPER_MODULE_DIR.'/images/'.strtolower($this->CmcSocialName($fieldName)) . ".png";
+        return CMC_HELPER_MODULE_DIR.'/images/'.strtolower($this->CmcSocialName($fieldName)) . ".png";
     }
-    
+
     public function CmcSocialName($fieldName) {
         $arrSearch = array("Url", "User");
         return str_replace($arrSearch, "", $fieldName);
     }
-    
-    
+
+
 }
