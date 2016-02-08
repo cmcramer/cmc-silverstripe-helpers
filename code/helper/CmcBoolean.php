@@ -16,5 +16,21 @@ class CmcBoolean extends Boolean {
         }
         return '';
     }
+    
+
+    public function YesNow() {
+        return $this->Nice();
+    }
+
+    public function YesBlank() {
+        if ($this->value) {
+            return _t('Boolean.YESANSWER', 'Yes');
+        }
+        return '';
+    }
+    
+    public function TrueFalse() {
+        return $this->NiceAsBoolean();
+    }
 
 }
