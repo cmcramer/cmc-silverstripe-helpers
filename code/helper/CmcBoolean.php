@@ -18,7 +18,7 @@ class CmcBoolean extends Boolean {
     }
     
 
-    public function YesNow() {
+    public function YesNo() {
         return $this->Nice();
     }
 
