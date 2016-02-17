@@ -13,6 +13,7 @@ Data Extensions (must be added via config.yml, e.g. mysite/_config/config.yml)
 - CmcSiteHeaderImage - Use this to add Site Header Image
 - CmcSiteLogo - Use this to add up to 2 Logos to your site that are editable in the CMS. Includes fields for Logo, Title and URL
 - CmcShortTitle - Add ShortTitle for your Site editable in the Admin. Useful for smaller screens.
+- CmcSiteDescription - Add Description for Site editable in Site Settings.
 - CmcSiteSocialUrls - Add Urls for Social Media site to use throughout your site; i.e. in site footer
 - CmcSiteTwitterFeed - Add a Twitter Feed to your site
 
@@ -71,6 +72,7 @@ SiteConfig:
     - CmcSiteTwitterFeed
     - CmcSiteSocialUrls
     - CmcSiteShortTitle
+    - CmcSiteDescription
 ```
 
 4) Add GridField Components to your GridField Config
