@@ -26,7 +26,7 @@ class CmcSiteInfoEmail extends DataExtension {
 
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab("Root.Main", new TextField("Email", "Site Info Email"));
-        $fields->addFieldToTab("Root.Main", new TextField("Subject", "Email Subject"));
+$fields->addFieldToTab("Root.Main", new TextField("Subject", "Email Subject"));
     }
     
     public function EncodedSiteInfoEmail($label='') {
