@@ -18,7 +18,7 @@
  *          $SiteConfig.InfoEmail
  *
  */
-class CmcInfoEmail extends DataExtension {
+class CmcSiteInfoEmail extends DataExtension {
     private static $db = array(
         'Email'     => 'Varchar(254)',
         'Subject'   => 'Varchar(254)',
@@ -30,13 +30,13 @@ class CmcInfoEmail extends DataExtension {
     
     public function EncodedSiteInfoEmail($label='') {
         if ($label == '') {
-            $label=$email;
+            $label=$this->owner->Email;
         }
-        if ($this->Subject != '') { //set subject
-            $mailString  = '<a href="' . encode('mailto:' . $this->Email);
-            $mailString .= '?subject=' . $subject . '">';
+        if ($this->owner->Subject != '') { //set subject
+            $mailString  = '<a href="' . encode('mailto:' . $this->owner->Email);
+            $mailString .= '?subject=' . $this->owner->Subject . '">';
         } else {              //no subject
-            $mailString  = '<a href="' . encode('mailto:' . $this->Email) . '" >';
+            $mailString  = '<a href="' . encode('mailto:' . $this->owner->Email) . '" >';
         }
         $mailString  .= '<span class="email">' . encode($label) . '</span></a>';
         return $mailString;
