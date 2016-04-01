@@ -21,7 +21,7 @@ class CmcNumberFormat {
         $roundedDecimal = round($decimal, 2);
         
         $int = floor($roundedDecimal);  
-        $fraction = $roundedDecimal - $whole;
+        $fraction = $roundedDecimal - $int;
         
         //check to see if this is an even tenth
         $tenth = $fraction * 10;
