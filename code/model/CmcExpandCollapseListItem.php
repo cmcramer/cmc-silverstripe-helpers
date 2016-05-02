@@ -5,9 +5,9 @@ class CmcExpandCollapseListItem extends DataObject {
     private static $plural_name = 'FAQs';
     
     private static $db = array(
-        'ItemTitle' => 'Text',
+        'ItemTitle'     => 'Text',
         'ItemContent'   => 'HTMLText',
-        'ExpandCollapseListItemOrder' => 'Int',
+        'ItemOrder'     => 'Int',
     );
         
     private static $has_one = array(
@@ -20,7 +20,7 @@ class CmcExpandCollapseListItem extends DataObject {
     );
     
     private static $default_sort = array(
-        'ExpandCollapseListItemOrder',
+        'ItemOrder',
     );
     
     public function getCMSFields() {

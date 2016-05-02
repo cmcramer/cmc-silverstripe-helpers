@@ -27,7 +27,7 @@ class CmcExpandCollapseList extends DataExtension {
 	    
         // Create a default configuration for the new GridField, allowing record editing
         $faqGridConfig = GridFieldConfig_RelationEditor::create();
-        $faqGridConfig->addComponent(new GridFieldSortableRows('ExpandCollapseOrder'));
+        $faqGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
         
         // Create a gridfield to hold the faqs relationship
         $listItemsField = new GridField(
