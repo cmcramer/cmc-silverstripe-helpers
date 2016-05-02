@@ -3,14 +3,14 @@
  * 
  * @author cmc
  * 
- * Expandable FAQ List - Nearly identical to ExandCollapseList
+ * Expandable List - Similar to FaqList
  * 
  */
-class CmcFaqList extends DataExtension {
+class CmcExpandCollapseList extends DataExtension {
 
 
-	private static $singular_name = 'FAQ List';
-	private static $plural_name = 'FAQ Lists';
+	private static $singular_name = 'Expand/Collapse List';
+	private static $plural_name = 'Expand/Collapse Lists';
 	
 	private static $db = array(
 	    'ListTitle'            => 'Text',
@@ -18,7 +18,7 @@ class CmcFaqList extends DataExtension {
 	);
 	
 	private static $has_many = array(
-	         'Faqs'    => 'CmcFaq',
+	         'ExpandCollapseListItems'    => 'CmcExpandCollapseListItem',
 	);
 	
 	
@@ -26,19 +26,19 @@ class CmcFaqList extends DataExtension {
 	    
         // Create a default configuration for the new GridField, allowing record editing
         $faqGridConfig = GridFieldConfig_RelationEditor::create();
-        $faqGridConfig->addComponent(new GridFieldSortableRows('FaqOrder'));
+        $faqGridConfig->addComponent(new GridFieldSortableRows('ExpandCollapseOrder'));
         
         // Create a gridfield to hold the faqs relationship
-        $faqsField = new GridField(
-        		'Faqs', // Field name
-        		'FAQs', // Field title
-        		$this->owner->Faqs(), // List of all related news faqs
+        $listItemsField = new GridField(
+        		'ExpandCollapseListItems', // Field name
+        		'List', // Field title
+        		$this->owner->ExpandCollapses(), // List of all related news faqs
         		$faqGridConfig
         );
 		// Create a tab named "Images" and add our field to it
-        $fields->addFieldToTab("Root.FAQ", new TextField("ListTitle", "List Title"));
-        $fields->addFieldToTab("Root.FAQ", new TextField("ExpandCollapseLabel", "Expand/Collapse Label"));
-		$fields->addFieldToTab('Root.FAQ', $faqsField);
+        $fields->addFieldToTab("Root.List", new TextField("ListTitle", "List Title"));
+        $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label"));
+		$fields->addFieldToTab('Root.List', $listItemsField);
 		
 	}
 
