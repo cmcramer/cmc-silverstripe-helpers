@@ -1,8 +1,8 @@
 <?php
 class CmcExpandCollapseListItem extends DataObject {
 
-    private static $singular_name = 'FAQ';
-    private static $plural_name = 'FAQs';
+    private static $singular_name = 'List Item';
+    private static $plural_name = 'List Items';
     
     private static $db = array(
         'ItemTitle'     => 'Text',
