@@ -1,0 +1,56 @@
+/*  "Show All" + "Hide All" links */
+#content #TJK_ToggleON  a, #content #TJK_ToggleON  a:visited, #content #TJK_ToggleOFF  a, #content #TJK_ToggleOFF  a:visited, 
+#content #TJK_ToggleON2  a, #content #TJK_ToggleON2  a:visited, #content #TJK_ToggleOFF2  a, #content #TJK_ToggleOFF2  a:visited 
+{ color : #0d0d0d; text-decoration : none; }
+#content #TJK_ToggleON  a:hover, #content #TJK_ToggleON  a:active, #content #TJK_ToggleON a:focus, #content #TJK_ToggleOFF  a:hover, #content #TJK_ToggleOFF  a:active, #content #TJK_ToggleOFF a:focus, 
+#content #TJK_ToggleON2  a:hover, #content #TJK_ToggleON2  a:active, #content #TJK_ToggleON2 a:focus, #content #TJK_ToggleOFF2  a:hover, #content #TJK_ToggleOFF2  a:active, #content #TJK_ToggleOFF2 a:focus  
+{ background-color : #ffffff; color : #222222; text-decoration : none; }
+/* zeroing out padding and margin */
+#content #TJK_DL dt, #content #TJK_DL2 dt  
+{margin:0;padding:0 0 6px 0} 
+/* margin for the DTs (shorthand) */
+#content #TJK_DL dt, #content #TJK_DL2 dt  
+{margin:4px 0}
+/* image and left padding for DDs */
+/*#content #TJK_DL dd {background:url(answer.gif) no-repeat;padding-left:55px}*/
+ #content #TJK_DL dd,  #content #TJK_DL2 dd  
+ {padding:0 0 6px 10px;}
+/* styling all anchors in the DTs */
+#content #TJK_DL dt a, #content #TJK_DL2 dt a  
+{background:0 50% no-repeat;
+padding-left:16px;
+/*color:#000;*/
+text-decoration:none}
+#content #TJK_DL dt a:visited, #content #TJK_DL2 dt a:visited 
+{color:#666}
+#content #TJK_DL dt a:visited:hover,
+#content #TJK_DL dt a:hover,
+#content #TJK_DL dt a:active,
+#content #TJK_DL dt a:focus, 
+#content #TJK_DL2 dt a:visited:hover,
+#content #TJK_DL2 dt a:hover,
+#content #TJK_DL2 dt a:active,
+#content #TJK_DL2 dt a:focus  
+{font-weight:bold}
+
+
+
+/* nav-top a */
+#nav-top  a, #nav-top  a:visited 
+{ color : #0d0d0d; text-decoration : none; }
+#nav-top  a:hover, #nav-top  a:active, #nav-top a:focus 
+{ background-color : #ffffff; color : #222222; text-decoration : none; }
+
+/* the + and - gif in the anchors */
+#content #TJK_DL .DTplus a, #content #TJK_DL2 .DTplus a  
+{background-image:url(toggleDLplus.gif)}
+#content #TJK_DL .DTminus a, #content #TJK_DL2 .DTminus a  
+{background-image:url(toggleDLminus.gif)}
+/**********************************/
+/**********************************/
+#content #TJK_DL .showDD, #content #TJK_DL2 .showDD  
+{position:relative;top:0}
+#content #TJK_DL dd,.hideDD, #content #TJK_DL2 dd,.hideDD
+{top:-9999px;position:absolute}
+#content #TJK_ToggleON,#content #TJK_ToggleOFF,
+#content #TJK_ToggleON2,#content #TJK_ToggleOFF2 {display:inline;cursor:pointer;cursor:hand}

@@ -1,0 +1,4 @@
+
+/* the + and - gif in the anchors */
+#content #TJK_DL .DTplus a, #content #TJK_DL2 .DTplus a {background-image:url(../images/ie_btn-trans-white-plus.gif)}
+#content  #TJK_DL .DTminus a, #content  #TJK_DL2 .DTminus a {background-image:url(../images/ie_btn-trans-white-minus.gif)}

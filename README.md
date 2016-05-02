@@ -137,6 +137,12 @@ private static $has_one = array (
 );
 ```
 
+7) FaqList add extension to your page class
+```
+FaqPage:
+  extensions:
+    - CmcFaqList
+```
 ####Thanks to SilverStripe and the SilverStripe Community
 
 
