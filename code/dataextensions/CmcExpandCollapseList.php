@@ -33,7 +33,7 @@ class CmcExpandCollapseList extends DataExtension {
         $listItemsField = new GridField(
         		'ExpandCollapseListItems', // Field name
         		'List', // Field title
-        		$this->owner->ExpandCollapses(), // List of all related news faqs
+        		$this->owner->ExpandCollapseListItems(), // List of all related news faqs
         		$faqGridConfig
         );
 		// Create a tab named "Images" and add our field to it
