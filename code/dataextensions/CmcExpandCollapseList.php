@@ -15,6 +15,7 @@ class CmcExpandCollapseList extends DataExtension {
 	private static $db = array(
 	    'ListTitle'            => 'Text',
 	    'ExpandCollapseLabel'  => 'Text',
+	    'ListNotes'            => 'HTMLText',
 	);
 	
 	private static $has_many = array(
@@ -38,6 +39,7 @@ class CmcExpandCollapseList extends DataExtension {
 		// Create a tab named "Images" and add our field to it
         $fields->addFieldToTab("Root.List", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label"));
+        $fields->addFieldToTab("Root.List", new HtmlEditorField("ListNotes", "List Notes"));
 		$fields->addFieldToTab('Root.List', $listItemsField);
 		
 	}

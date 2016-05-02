@@ -14,6 +14,7 @@ class CmcFaqList extends DataExtension {
 	
 	private static $db = array(
 	    'ListTitle'            => 'Text',
+	    'ListNotes'            => 'HTMLText',
 	);
 	
 	private static $has_many = array(
@@ -36,6 +37,7 @@ class CmcFaqList extends DataExtension {
         );
 		// Create a tab named "Images" and add our field to it
         $fields->addFieldToTab("Root.FAQ", new TextField("ListTitle", "List Title"));
+        $fields->addFieldToTab("Root.FAQ", new HtmlEditorField("ListNotes", "List Notes"));
 		$fields->addFieldToTab('Root.FAQ', $faqsField);
 		
 	}

@@ -2,9 +2,9 @@
 // TJK_ToggleDL() Version 1.5.4 report bugs or errors to thierry@tjkdesign.com
 
 if (document.getElementById && document.getElementsByTagName){			
-document.write("<link href=\"/cmcramer-helpers/javascript/TJK_ToggleDL/TJK_ToggleDL.css\" type=\"text/css\" rel=\"stylesheet\" />")
-document.write("<link href=\"/cmcramer-helpers/javascript/TJK_ToggleDL/TJK_ToggleDL_ie5mac.css\" type=\"text/css\" rel=\"stylesheet\" />")
-document.write("<!--[if lte IE 6]><link rel=\"stylesheet\" type=\"text/css\" href=\"/cmcramer-helpers/javascript/TJK_ToggleDL/ielegacy_TJKToggle.css\" /><![endif]-->")
+document.write("<link href=\"/cmc-silverstripe-helpers/javascript/TJK_ToggleDL/TJK_ToggleDL.css\" type=\"text/css\" rel=\"stylesheet\" />")
+document.write("<link href=\"/cmc-silverstripe-helpers/javascript/TJK_ToggleDL/TJK_ToggleDL_ie5mac.css\" type=\"text/css\" rel=\"stylesheet\" />")
+document.write("<!--[if lte IE 6]><link rel=\"stylesheet\" type=\"text/css\" href=\"/cmc-silverstripe-helpers/javascript/TJK_ToggleDL/ielegacy_TJKToggle.css\" /><![endif]-->")
 }
 function TJK_doToggleDL(x){
 	var zDD=document.getElementById('TJK_DL').getElementsByTagName('dd');
