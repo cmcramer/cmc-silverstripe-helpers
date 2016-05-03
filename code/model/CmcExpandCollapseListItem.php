@@ -8,6 +8,7 @@ class CmcExpandCollapseListItem extends DataObject {
         'ItemTitle'     => 'Text',
         'ItemContent'   => 'HTMLText',
         'ItemOrder'     => 'Int',
+        'Hide'      => 'CmcBoolean',
     );
         
     private static $has_one = array(
@@ -15,8 +16,9 @@ class CmcExpandCollapseListItem extends DataObject {
     );
     
     private static $summary_fields = array(
-        'ItemTitleChopped'          => 'ItemTitle',
-        'ItemContentChopped'    => 'ItemContent',  
+        'ItemTitleChopped'      => 'ItemTitle',
+        'ItemContentChopped'    => 'ItemContent',
+        'Hide.NiceCMS'       => 'Hidden',  
     );
     
     private static $default_sort = array(
@@ -25,7 +27,7 @@ class CmcExpandCollapseListItem extends DataObject {
     
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->removeByName('ListPageID');
+        $fields->removeByName('ListItemPageID');
         return $fields;
     }
     
@@ -46,6 +48,7 @@ class CmcExpandCollapseListItem extends DataObject {
     public function ItemContentChopped($maxChars=50) {
         return CmcHtmlTextHelper::NoHtmlChop($this->ItemContent, $maxChars);
     }
+    
     
 
 }

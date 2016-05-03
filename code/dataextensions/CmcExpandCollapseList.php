@@ -74,5 +74,12 @@ EOT;
 	}
 	
 	
+
+	public function PublicList() {
+	    return $this->owner->ExpandCollapseListItems()->filter(array(
+	                                                                   'Hide' => false,
+	                                                           ));
+	}
+	
 	
 }

@@ -71,6 +71,11 @@ EOT;
 	    //return $strJs;
 	}
 	
-	
+
+	public function PublicFaq() {
+	    return $this->owner->Faqs()->filter(array(
+	                                           'Hide' => false,
+	                                        ));
+	}
 	
 }

@@ -8,6 +8,7 @@ class CmcFaq extends DataObject {
         'Question' => 'Text',
         'Answer'   => 'HTMLText',
         'FaqOrder' => 'Int',
+        'Hide'  => 'CmcBoolean',
     );
         
     private static $has_one = array(
@@ -17,6 +18,7 @@ class CmcFaq extends DataObject {
     private static $summary_fields = array(
         'QuestionChopped' => 'Question',
         'AnswerChopped'   => 'Answer',  
+        'Hide.NiceCMS' => 'Hidden',
     );
     
     private static $default_sort = array(
@@ -47,5 +49,6 @@ class CmcFaq extends DataObject {
         return CmcHtmlTextHelper::NoHtmlChop($this->Answer, $maxChars);
     }
     
+
 
 }

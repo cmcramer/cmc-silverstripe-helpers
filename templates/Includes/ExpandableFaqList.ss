@@ -1,4 +1,4 @@
-<% if $Faqs %>
+<% if $PublicFaq %>
 	<h2>$ListTitle</h2>
 	<p><a id="TJK_ToggleON" 
 			href="/sculling/elite-sculling/about-the-sbtc-program/#" 
@@ -8,7 +8,7 @@
 	 		href="/sculling/elite-sculling/about-the-sbtc-program/#" 
 	 		class="ss-broken">Collapse All FAQ</a></p>
 	<dl id="TJK_DL">
-		<% loop $Faqs %>
+		<% loop $PublicFaq %>
 			<dt>$Question</dt>
 			<dd>$Answer</dd>
 		<% end_loop %>
