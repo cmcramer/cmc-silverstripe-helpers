@@ -38,7 +38,7 @@ class CmcFaqList extends DataExtension {
 		// Create a tab named "Images" and add our field to it
         $fields->addFieldToTab("Root.FAQ", new TextField("ListTitle", "List Title"));
 		$fields->addFieldToTab('Root.FAQ', $faqsField);
-        $fields->addFieldToTab("Root.FAQ", new HtmlEditorField("ListNotes", "List Notes(appears below list in most templates)"));
+        $fields->addFieldToTab("Root.FAQ", new HtmlEditorField("ListNotes", "List Notes"));
 		
 	}
 
