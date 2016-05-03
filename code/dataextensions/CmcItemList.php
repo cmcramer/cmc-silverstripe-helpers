@@ -3,42 +3,44 @@
  * 
  * @author cmc
  * 
- * Expandable List - Similar to FaqList
+ * List - Similar to FaqList
+ * 
+ * Can be expandable if set up in template used by page that uses this extension
  * 
  */
-class CmcExpandCollapseList extends DataExtension {
+class CmcItemList extends DataExtension {
 
 
-	private static $singular_name = 'Expand/Collapse List';
-	private static $plural_name = 'Expand/Collapse Lists';
+	private static $singular_name = 'Page with Item List (Block or Expand/Collapse)';
+	private static $plural_name = 'Page with Item List (Block or Expand/Collapse)';
 	
 	private static $db = array(
-	    'ListTitle'            => 'Text',
+	    'ListTitle'    => 'Text',
+	    'ListNotes'    => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
-	    'ListNotes'            => 'HTMLText',
 	);
 	
 	private static $has_many = array(
-	         'ExpandCollapseListItems'    => 'CmcExpandCollapseListItem',
+	         'ListItems'    => 'CmcListItem',
 	);
 	
 	
 	public function updateCMSFields(FieldList $fields) {
 	    
         // Create a default configuration for the new GridField, allowing record editing
-        $faqGridConfig = GridFieldConfig_RelationEditor::create();
-        $faqGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
+        $listGridConfig = GridFieldConfig_RelationEditor::create();
+        $listGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
         
         // Create a gridfield to hold the faqs relationship
         $listItemsField = new GridField(
-        		'ExpandCollapseListItems', // Field name
+        		'ListItems', // Field name
         		'List', // Field title
-        		$this->owner->ExpandCollapseListItems(), // List of all related news faqs
-        		$faqGridConfig
+        		$this->owner->ListItems(), // List of all related news faqs
+        		$listGridConfig
         );
 		// Create a tab named "Images" and add our field to it
         $fields->addFieldToTab("Root.List", new TextField("ListTitle", "List Title"));
-        $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label"));
+        $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
 		$fields->addFieldToTab('Root.List', $listItemsField);
         $fields->addFieldToTab("Root.List", new HtmlEditorField("ListNotes", "List Notes"));
 		
@@ -67,18 +69,14 @@ EOT;
         
 	    Requirements::javascript(CMC_HELPER_MODULE_DIR."/javascript/TJK_ToggleDL/TJK_ToggleDL.js");
 	    Requirements::customScript($strJsLoadTJK);
-// 	    $strJs = <<<EOT
-// 	    addLoadEvent(TJK_ToggleDL);
-// EOT;
-	    //return $strJs;
 	}
 	
 	
 
 	public function PublicList() {
-	    return $this->owner->ExpandCollapseListItems()->filter(array(
-	                                                                   'Hide' => false,
-	                                                           ));
+	    return $this->owner->ListItems()->filter(array(
+	                                                    'Hide' => false,
+	                                             ));
 	}
 	
 	

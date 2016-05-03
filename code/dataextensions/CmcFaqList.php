@@ -26,7 +26,7 @@ class CmcFaqList extends DataExtension {
 	    
         // Create a default configuration for the new GridField, allowing record editing
         $faqGridConfig = GridFieldConfig_RelationEditor::create();
-        $faqGridConfig->addComponent(new GridFieldSortableRows('FaqOrder'));
+        $faqGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
         
         // Create a gridfield to hold the faqs relationship
         $faqsField = new GridField(
@@ -38,7 +38,7 @@ class CmcFaqList extends DataExtension {
 		// Create a tab named "Images" and add our field to it
         $fields->addFieldToTab("Root.FAQ", new TextField("ListTitle", "List Title"));
 		$fields->addFieldToTab('Root.FAQ', $faqsField);
-        $fields->addFieldToTab("Root.FAQ", new HtmlEditorField("ListNotes", "List Notes"));
+        $fields->addFieldToTab("Root.FAQ", new HtmlEditorField("ListNotes", "List Notes(appears below list in most templates)"));
 		
 	}
 
@@ -65,10 +65,6 @@ EOT;
         
 	    Requirements::javascript(CMC_HELPER_MODULE_DIR."/javascript/TJK_ToggleDL/TJK_ToggleDL.js");
 	    Requirements::customScript($strJsLoadTJK);
-// 	    $strJs = <<<EOT
-// 	    addLoadEvent(TJK_ToggleDL);
-// EOT;
-	    //return $strJs;
 	}
 	
 

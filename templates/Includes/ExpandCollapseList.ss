@@ -10,7 +10,14 @@
 	<dl id="TJK_DL">
 		<% loop $PublicList %>
 			<dt>$ItemTitle</dt>
-			<dd>$ItemContent</dd>
+			<dd>
+				<% if $Image %>
+					<a class="fancybox" title="{$Image.Title}" 
+						href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
+  						{$Image.CroppedImage(120,120)}
+					</a>
+				<% end_if %>
+				$ItemContent</dd>
 		<% end_loop %>
 	</dl>
 	$ListNotes

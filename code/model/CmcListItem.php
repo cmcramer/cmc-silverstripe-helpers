@@ -1,5 +1,5 @@
 <?php
-class CmcExpandCollapseListItem extends DataObject {
+class CmcListItem extends DataObject {
 
     private static $singular_name = 'List Item';
     private static $plural_name = 'List Items';
@@ -12,7 +12,8 @@ class CmcExpandCollapseListItem extends DataObject {
     );
         
     private static $has_one = array(
-        'ListItemPage'  => 'Page',  
+        'Image'     => 'Image',
+        'ListPage'  => 'Page',  
     );
     
     private static $summary_fields = array(
@@ -27,7 +28,15 @@ class CmcExpandCollapseListItem extends DataObject {
     
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->removeByName('ListItemPageID');
+        $fields->removeByName('ListPageID');
+        $fields->removeByName('ItemTitle');
+        $fields->removeByName('ItemContent');
+        $fields->removeByName('ItemOrder');
+        $fields->removeByName('Hide');
+        $fields->addFieldToTab('Root.Main', new CheckboxField('Hide', 'Hide from public pages'));
+        $fields->addFieldToTab('Root.Main', new NumericField('ItemOrder', 'Order'), 'Hide');
+        $fields->addFieldToTab('Root.Main', new HtmlEditorField('ItemContent','Content'), 'ItemOrder');
+        $fields->addFieldToTab('Root.Main', new TextField('ItemTitle', 'Title'), 'ItemContent');
         return $fields;
     }
     
