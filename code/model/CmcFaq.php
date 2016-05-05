@@ -34,24 +34,14 @@ class CmcFaq extends CmcListItem {
         return $fields;
     }
     
-    
-//     private static $display_fields = array(
-//         'Question'  => 'Link'
-//     );
-
-//     public function getTitle() {
-//         return $this->QuestionChopped();
-//     }
-
-    
-//     public function QuestionChopped($maxChars=50) {
-//         return CmcHtmlTextHelper::NoHtmlChop($this->Question, $maxChars);
-//     }
-    
-//     public function AnswerChopped($maxChars=50) {
-//         return CmcHtmlTextHelper::NoHtmlChop($this->Answer, $maxChars);
-//     }
-    
+    //should be built in, but can't find it.
+    ///Based on public function singular_name() in DataObject
+    public static function getSingularName() {
+        if(!$name = static::$singular_name) {
+            $name = ucwords(trim(strtolower(preg_replace('/_?([A-Z])/', ' $1', static::getClassName()))));
+        }
+        return $name;
+    }
 
 
 }
