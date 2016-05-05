@@ -18,6 +18,7 @@ class CmcItemList extends DataExtension {
 	    'ListTitle'    => 'Text',
 	    'ListNotes'    => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
+	    'ListItemName' => 'Text',
 	);
 	
 	private static $has_many = array(
@@ -42,6 +43,7 @@ class CmcItemList extends DataExtension {
         
 		// Create a tab named "List" and add our field to it
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListItemName", "List Item Name"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
         $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
@@ -82,19 +84,16 @@ EOT;
 	}
 	
 	protected function _tabName() {
-	    if ($this->owner->ListTitle && $this->owner->ListTitle != '') {
-	        return $this->owner->ListTitle;
+	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
+	        return "{$this->owner->ListItemName}s";
 	    } else {
-	        return 'List';
+	        return 'List Items';
 	    }
 	}
 	
 	protected function _getAddButtonLabel() {
-	    if ($this->owner->ListTitle && $this->owner->ListTitle != '') {
-	        if (substr($this->owner->ListTitle, -1) == 's') {
-	            return substr($this->owner->ListTitle, 0, -1);
-	        }
-	        return $this->owner->ListTitle;
+	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
+	        return $this->owner->ListItemName;
 	    } else {
 	        return static::$singular_name;
 	    }

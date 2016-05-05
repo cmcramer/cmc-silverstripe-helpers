@@ -20,6 +20,7 @@ class CmcItemWithImageList extends CmcItemList {
 	    'ListTitle'    => 'Text',
 	    'ListNotes'    => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
+	    'ListItemName' => 'Text',
 	);
 
 	
