@@ -12,7 +12,6 @@ class CmcListItem extends DataObject {
     );
         
     private static $has_one = array(
-        'Image'     => 'Image',
         'ListPage'  => 'Page',  
     );
     
@@ -41,10 +40,6 @@ class CmcListItem extends DataObject {
     }
     
     
-//     private static $display_fields = array(
-//         'ItemTitle'  => 'Link'
-//     );
-
     public function getTitle() {
         return $this->ItemTitleChopped();
     }

@@ -38,7 +38,7 @@ class CmcItemList extends DataExtension {
         		$this->owner->ListItems(), // List of all related news faqs
         		$listGridConfig
         );
-		// Create a tab named "Images" and add our field to it
+		// Create a tab named "List" and add our field to it
         $fields->addFieldToTab("Root.List", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
 		$fields->addFieldToTab('Root.List', $listItemsField);
