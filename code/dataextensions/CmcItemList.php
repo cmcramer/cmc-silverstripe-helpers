@@ -30,7 +30,7 @@ class CmcItemList extends DataExtension {
         // Create a default configuration for the new GridField, allowing record editing
         $listGridConfig = GridFieldConfig_RelationEditor::create();
         $listGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
-        $listGridConfig->getComponentByType('GridFieldAddNewButton')->setButtonName("Add New {$this->_getAddButtonLabel()}");
+        $listGridConfig->getComponentByType('GridFieldAddNewButton')->setButtonName("Add {$this->_getAddButtonLabel()}");
         // Create a gridfield to hold the faqs relationship
         $listItemsField = new GridField(
         		'ListItems', // Field name
