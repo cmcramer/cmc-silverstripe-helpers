@@ -91,6 +91,9 @@ EOT;
 	
 	protected function _getAddButtonLabel() {
 	    if ($this->owner->ListTitle && $this->owner->ListTitle != '') {
+	        if (substr($this->owner->ListTitle, -1) == 's') {
+	            return substr($this->owner->ListTitle, 0, -1);
+	        }
 	        return $this->owner->ListTitle;
 	    } else {
 	        return static::$singular_name;
