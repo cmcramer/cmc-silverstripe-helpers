@@ -95,8 +95,10 @@ EOT;
 	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
 	        return $this->owner->ListItemName;
 	    } else {
-	        return static::$singular_name;
+	        $itemClass = static::$has_many['ListItems']; //probably a better there's a way to do this
+	        return $itemClass::getSingularName();
 	    }
+	    
 	}
 	
 }
