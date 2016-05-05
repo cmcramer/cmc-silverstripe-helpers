@@ -14,5 +14,4 @@
 		<% end_loop %>
 	</dl>
 	$ListNotes
-	$ToggleJsInit
 <% end_if %>

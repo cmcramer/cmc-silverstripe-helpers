@@ -12,7 +12,7 @@ class CmcListItem extends DataObject {
     );
         
     private static $has_one = array(
-        'ListPage'  => 'Page',  
+        'Page'  => 'Page',  
     );
     
     private static $summary_fields = array(
