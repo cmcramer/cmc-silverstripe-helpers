@@ -34,15 +34,15 @@ class CmcItemList extends DataExtension {
         // Create a gridfield to hold the faqs relationship
         $listItemsField = new GridField(
         		'ListItems', // Field name
-        		'List', // Field title
+        		$this->_tabName(), // Field title
         		$this->owner->ListItems(), // List of all related news faqs
         		$listGridConfig
         );
 		// Create a tab named "List" and add our field to it
-        $fields->addFieldToTab("Root.List", new TextField("ListTitle", "List Title"));
-        $fields->addFieldToTab("Root.List", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
-		$fields->addFieldToTab('Root.List', $listItemsField);
-        $fields->addFieldToTab("Root.List", new HtmlEditorField("ListNotes", "List Notes"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
+		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
 		
 	}
 
@@ -79,5 +79,12 @@ EOT;
 	                                             ));
 	}
 	
+	protected function _tabName() {
+	    if ($this->owner->ListTitle && $this->owner->ListTitle != '') {
+	        return $this->owner->ListTitle;
+	    } else {
+	        return 'List';
+	    }
+	}
 	
 }
