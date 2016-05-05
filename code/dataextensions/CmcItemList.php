@@ -30,7 +30,7 @@ class CmcItemList extends DataExtension {
         // Create a default configuration for the new GridField, allowing record editing
         $listGridConfig = GridFieldConfig_RelationEditor::create();
         $listGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
-        
+        $listGridConfig->getComponentByType('GridFieldAddNewButton')->setButtonName("Add New {$this->_getAddButtonLabel()}");
         // Create a gridfield to hold the faqs relationship
         $listItemsField = new GridField(
         		'ListItems', // Field name
@@ -38,6 +38,8 @@ class CmcItemList extends DataExtension {
         		$this->owner->ListItems(), // List of all related news faqs
         		$listGridConfig
         );
+        //$listItemsField->getConfig()
+        
 		// Create a tab named "List" and add our field to it
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
@@ -84,6 +86,14 @@ EOT;
 	        return $this->owner->ListTitle;
 	    } else {
 	        return 'List';
+	    }
+	}
+	
+	protected function _getAddButtonLabel() {
+	    if ($this->owner->ListTitle && $this->owner->ListTitle != '') {
+	        return $this->owner->ListTitle;
+	    } else {
+	        return static::$singular_name;
 	    }
 	}
 	
