@@ -63,5 +63,9 @@ class CmcListItem extends DataObject {
          return $name;
     }
     
+    public function NamedAnchor() {
+        return CmcStringHelper::alphanumeric($this->ItemTitleChopped(32));
+    }
+    
 
 }
