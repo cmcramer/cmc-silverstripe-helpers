@@ -2,6 +2,7 @@
 	<h2>$ListTitle</h2>
 	<dl class="stacked-list $ListClass">
 		<% loop $PublicList %>
+			<a name="{$NamedAnchor}"></a>
 			<dt>$ItemTitle</dt>
 			<dd>
 				<% if $Image %>
