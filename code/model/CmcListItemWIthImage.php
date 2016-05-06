@@ -19,5 +19,4 @@ class CmcListItemWithImage extends CmcListItem {
     );
 
 
-
 }

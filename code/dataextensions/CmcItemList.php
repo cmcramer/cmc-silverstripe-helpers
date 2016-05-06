@@ -85,6 +85,10 @@ EOT;
 	                                             ));
 	}
 	
+	public function ListClass() {
+	    return strtolower(CmcStringHelper::alphanumericWithDashes($this->_getAddButtonLabel()));
+	}
+	
 	protected function _tabName() {
 	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
 	        return "{$this->owner->ListItemName}s";

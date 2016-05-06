@@ -1,6 +1,6 @@
 <% if PublicList %>
 	<h2>$ListTitle</h2>
-	<dl class="stacked-list">
+	<dl class="stacked-list $ListClass">
 		<% loop $PublicList %>
 			<dt>$ItemTitle</dt>
 			<dd>
