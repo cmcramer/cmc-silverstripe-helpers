@@ -18,13 +18,6 @@ class CmcListItemWithImage extends CmcListItem {
         'Hide.NiceCMS'          => 'Hidden',  
     );
 
-//     public function getCMSFields() {
-//         $fields = parent::getCMSFields();
-//         $fields->removeByName('ThumbnailWidth');
-//         $fields->removeByName('ThumbnailHeight');
-//         $fields->addFieldToTab('Root.Main', new NumericField('ThumbnailWidth', 'Thumbnail Width'), 'ItemTitle');
-//         $fields->addFieldToTab('Root.Main', new NumericField('ThumbnailHeight', 'Thumbnail Height'), 'ItemTitle');
-//         return $fields;
-//     }
+
 
 }
