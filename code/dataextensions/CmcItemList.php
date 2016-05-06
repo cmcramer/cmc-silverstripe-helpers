@@ -14,6 +14,8 @@ class CmcItemList extends DataExtension {
 	private static $singular_name = 'Page with Item List (Block or Expand/Collapse)';
 	private static $plural_name = 'Page with Item List (Block or Expand/Collapse)';
 	
+	protected static $_default_item_name = 'Item';
+	
 	private static $db = array(
 	    'ListTitle'    => 'Text',
 	    'ListNotes'    => 'HTMLText',
@@ -95,8 +97,7 @@ EOT;
 	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
 	        return $this->owner->ListItemName;
 	    } else {
-	        $itemClass = static::$has_many['ListItems']; //probably a better there's a way to do this
-	        return $itemClass::getSingularName();
+	        return static::$_default_item_name;
 	    }
 	    
 	}

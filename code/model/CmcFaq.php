@@ -3,6 +3,8 @@ class CmcFaq extends CmcListItem {
 
     private static $singular_name = 'FAQ';
     private static $plural_name = 'FAQs';
+	
+	protected static $_default_item_name = 'FAQ';
     
 //     private static $db = array(
 //         'Question' => 'Text',
@@ -34,14 +36,6 @@ class CmcFaq extends CmcListItem {
         return $fields;
     }
     
-    //should be built in, but can't find it.
-    ///Based on public function singular_name() in DataObject
-    public static function getSingularName() {
-        if(!$name = static::$singular_name) {
-            $name = ucwords(trim(strtolower(preg_replace('/_?([A-Z])/', ' $1', static::getClassName()))));
-        }
-        return $name;
-    }
 
 
 }

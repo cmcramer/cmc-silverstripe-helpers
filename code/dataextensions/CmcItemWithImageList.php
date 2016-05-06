@@ -15,6 +15,8 @@ class CmcItemWithImageList extends CmcItemList {
 	private static $plural_name = 'Page with Item with Image List (Block or Expand/Collapse)';
 
 
+	protected static $_default_item_name = 'Item';
+
 	//have to repeat fields in extended dataextension
 	private static $db = array(
 	    'ListTitle'    => 'Text',
@@ -29,14 +31,6 @@ class CmcItemWithImageList extends CmcItemList {
 	);
 	
 
-	//should be built in, but can't find it.
-	//Based on public function singular_name() in DataObject
-	//Has to be copied to derived object to grab private property
-	public static function getSingularName() {
-	    if(!$name = static::$singular_name) {
-	        $name = ucwords(trim(strtolower(preg_replace('/_?([A-Z])/', ' $1', static::getClassName()))));
-	    }
-	    return $name;
-	}
+	
 	
 }
