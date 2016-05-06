@@ -7,7 +7,7 @@
 				<% if $Image %>
 					<a class="fancybox" title="{$Image.Title}" 
 						href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
-  						{$Image.CroppedImage(120,120)}
+  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
 					</a>
 				<% end_if %>
 				$ItemContent</dd>
