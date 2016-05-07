@@ -11,7 +11,7 @@
 				<% else %>$ItemTitle<% end_if %></dt>
 			<dd>
 				<% if $Image %>
-					<p class="float-left">
+					<p <% if $ThumbnailsOnRight %>class="float-right"<% else %>class="float-left"<% end_if %>>
 						<% if $ItemUrl %>
 							<a title="{$ItemTitle}" href="{$ItemUrl.LinkURL}">
 		  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}

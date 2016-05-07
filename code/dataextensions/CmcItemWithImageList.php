@@ -19,14 +19,15 @@ class CmcItemWithImageList extends CmcItemList {
 
 	//have to repeat fields in extended dataextension
 	private static $db = array(
-	    'ListTitle'    => 'Text',
-	    'ListNotes'    => 'HTMLText',
+	    'ListTitle'            => 'Text',
+	    'ListNotes'            => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
-	    'ListItemName' => 'Text',
-        'ThumbnailWidth'    => 'Int',
-        'ThumbnailHeight'   => 'Int',
-	    'TopAnchorMenu' => 'CmcBoolean',
-	    'BottomAnchorMenu' => 'CmcBoolean',
+	    'ListItemName'         => 'Text',
+        'ThumbnailWidth'       => 'Int',
+        'ThumbnailHeight'      => 'Int',
+	    'ThumbnailsOnRight'    => 'CmcBoolean', 
+	    'TopAnchorMenu'        => 'CmcBoolean',
+	    'BottomAnchorMenu'     => 'CmcBoolean',
 	);
 
 	
@@ -62,6 +63,7 @@ class CmcItemWithImageList extends CmcItemList {
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailWidth', 'Thumbnail Width'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailHeight', 'Thumbnail Height'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('ThumbnailsOnRight', 'Thumbnails on Right'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('TopAnchorMenu', 'Show Anchor Menu Above'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('BottomAnchorMenu', 'Show Anchor Menu Beneath'));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
