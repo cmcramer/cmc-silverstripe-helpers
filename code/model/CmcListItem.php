@@ -8,10 +8,11 @@ class CmcListItem extends DataObject {
         'ItemTitle'     => 'Text',
         'ItemContent'   => 'HTMLText',
         'ItemOrder'     => 'Int',
-        'Hide'      => 'CmcBoolean',
+        'Hide'          => 'CmcBoolean',
     );
         
     private static $has_one = array(
+        'ItemUrl'   => 'Link',
         'ListPage'  => 'Page',  
     );
     
@@ -31,11 +32,16 @@ class CmcListItem extends DataObject {
         $fields->removeByName('ItemTitle');
         $fields->removeByName('ItemContent');
         $fields->removeByName('ItemOrder');
+        $fields->removeByName('ItemUrlID');
         $fields->removeByName('Hide');
         $fields->addFieldToTab('Root.Main', new CheckboxField('Hide', 'Hide from public pages'));
         $fields->addFieldToTab('Root.Main', new NumericField('ItemOrder', 'Order'), 'Hide');
         $fields->addFieldToTab('Root.Main', new HtmlEditorField('ItemContent','Content'), 'ItemOrder');
         $fields->addFieldToTab('Root.Main', new TextField('ItemTitle', 'Title'), 'ItemContent');
+        
+        $linkField = new LinkField('ItemUrl', 'ItemLink');
+        $linkField->setDescription('Makes Title/Thumbnail clickable in most templates.');
+        $fields->addFieldToTab('Root.Main', $linkField, 'ItemContent');
         return $fields;
     }
     
