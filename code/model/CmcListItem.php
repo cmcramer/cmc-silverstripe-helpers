@@ -39,7 +39,7 @@ class CmcListItem extends DataObject {
         $fields->addFieldToTab('Root.Main', new HtmlEditorField('ItemContent','Content'), 'ItemOrder');
         $fields->addFieldToTab('Root.Main', new TextField('ItemTitle', 'Title'), 'ItemContent');
         
-        $linkField = new LinkField('ItemUrl', 'ItemLink');
+        $linkField = new LinkField('ItemUrlID', 'ItemLink');
         $linkField->setDescription('Makes Title/Thumbnail clickable in most templates.');
         $fields->addFieldToTab('Root.Main', $linkField, 'ItemContent');
         return $fields;

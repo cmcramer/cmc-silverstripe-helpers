@@ -6,13 +6,19 @@
 	<dl class="stacked-list $ListClass">
 		<% loop $PublicList %>
 			<a name="{$NamedAnchor}"></a>
-			<dt>$ItemTitle</dt>
+			<dt><% if $ItemUrl %><a href="{$ItemUrl.LinkURL}" title="$ItemTitle">$ItemTitle</a><% else %>$ItemTitle<% end_if %></dt>
 			<dd>
 				<% if $Image %>
-					<a class="fancybox" title="{$Image.Title}" 
-						href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
-  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
-					</a>
+					<% if $ItemUrl %>
+						<a title="{$ItemTitle}" href="{$ItemUrl.LinkURL}">
+	  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
+						</a>
+					<% else %>
+						<a class="fancybox" title="{$ItemTitle}" 
+							href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
+	  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
+						</a>
+					<% end_if %>
 				<% end_if %>
 				$ItemContent</dd>
 		<% end_loop %>
