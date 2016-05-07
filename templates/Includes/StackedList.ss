@@ -6,7 +6,9 @@
 	<dl class="stacked-list $ListClass">
 		<% loop $PublicList %>
 			<a name="{$NamedAnchor}"></a>
-			<dt><% if $ItemUrl %><a href="{$ItemUrl.LinkURL}" title="$ItemTitle">$ItemTitle</a><% else %>$ItemTitle<% end_if %></dt>
+			<dt <% if $StartNewSection %>class="new-section"<% end_if %>
+				<% if $ItemUrl %><a href="{$ItemUrl.LinkURL}" title="$ItemTitle">$ItemTitle</a>
+				<% else %>$ItemTitle<% end_if %></dt>
 			<dd>
 				<% if $Image %>
 					<% if $ItemUrl %>

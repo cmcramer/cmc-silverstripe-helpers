@@ -5,10 +5,11 @@ class CmcListItem extends DataObject {
     private static $plural_name = 'List Items';
     
     private static $db = array(
-        'ItemTitle'     => 'Text',
-        'ItemContent'   => 'HTMLText',
-        'ItemOrder'     => 'Int',
-        'Hide'          => 'CmcBoolean',
+        'ItemTitle'         => 'Text',
+        'ItemContent'       => 'HTMLText',
+        'ItemOrder'         => 'Int',
+        'StartNewSection'   => 'CmcBoolean',
+        'Hide'              => 'CmcBoolean',
     );
         
     private static $has_one = array(
@@ -17,9 +18,10 @@ class CmcListItem extends DataObject {
     );
     
     private static $summary_fields = array(
-        'ItemTitleChopped'      => 'ItemTitle',
-        'ItemContentChopped'    => 'ItemContent',
-        'Hide.NiceCMS'       => 'Hidden',  
+        'ItemTitleChopped'          => 'ItemTitle',
+        'ItemContentChopped'        => 'ItemContent',
+        'StartNewSection.NiceCMS'   => 'New Section',
+        'Hide.NiceCMS'              => 'Hidden',  
     );
     
     private static $default_sort = array(
@@ -42,6 +44,7 @@ class CmcListItem extends DataObject {
         $linkField = new LinkField('ItemUrlID', 'ItemLink');
         $linkField->setDescription('Makes Title/Thumbnail clickable in most templates.');
         $fields->addFieldToTab('Root.Main', $linkField, 'ItemContent');
+        $fields->addFieldToTab('Root.Main', new CheckboxField('StartNewSection', 'Starts new section'), 'ItemContent');
         return $fields;
     }
     

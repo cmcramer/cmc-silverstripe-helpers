@@ -12,10 +12,11 @@ class CmcListItemWithImage extends CmcListItem {
     );
     
     private static $summary_fields = array(
-        'Image.CMSThumbnail'    => 'Image',
-        'ItemTitleChopped'      => 'ItemTitle',
-        'ItemContentChopped'    => 'ItemContent',
-        'Hide.NiceCMS'          => 'Hidden',  
+        'Image.CMSThumbnail'        => 'Image',
+        'ItemTitleChopped'          => 'ItemTitle',
+        'ItemContentChopped'        => 'ItemContent',
+        'StartNewSection.NiceCMS'   => 'New Section',
+        'Hide.NiceCMS'              => 'Hidden',  
     );
 
 
