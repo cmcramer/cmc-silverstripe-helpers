@@ -20,13 +20,13 @@
      },
      {
      "type": "vcs",
-     "url": " git@github.com:cmcramer/silverstripe-display-logic.git" 
+     "url": " git@github.com:cmcramer/display-logic.git" 
      }
   ],
   "require": {
     "silverstripe/cms": "~3.1",
     "silverstripe/framework": "~3.1",
-    "unclecheese/silverstripe-display-logic": "master",
+    "unclecheese/display-logic": "master",
     "sheadawson/silverstripe-linkable": "master"
   },
   "extra": {
