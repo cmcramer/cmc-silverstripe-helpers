@@ -1,5 +1,8 @@
 <% if PublicList %>
 	<h2>$ListTitle</h2>
+	<% if $TopAnchorMenu %>
+		<% include ListAnchorMenu %>
+	<% end_if %>
 	<dl class="stacked-list $ListClass">
 		<% loop $PublicList %>
 			<a name="{$NamedAnchor}"></a>
@@ -15,4 +18,7 @@
 		<% end_loop %>
 	</dl>
 	$ListNotes
+	<% if $BottomAnchorMenu %>
+		<% include ListAnchorMenu %>
+	<% end_if %>
 <% end_if %>
