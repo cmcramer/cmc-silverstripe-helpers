@@ -25,7 +25,8 @@ class CmcItemWithImageList extends CmcItemList {
 	    'ListItemName' => 'Text',
         'ThumbnailWidth'    => 'Int',
         'ThumbnailHeight'   => 'Int',
-	    'ShowJumpMenu' => 'CmcBoolean',
+	    'TopAnchorMenu' => 'CmcBoolean',
+	    'BottomAnchorMenu' => 'CmcBoolean',
 	);
 
 	
@@ -61,7 +62,8 @@ class CmcItemWithImageList extends CmcItemList {
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailWidth', 'Thumbnail Width'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailHeight', 'Thumbnail Height'));
-        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('ShowJumpMenu', 'Show Jump Menu'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('TopAnchorMenu', 'Show Anchor Menu Above'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('BottomAnchorMenu', 'Show Anchor Menu Beneath'));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
         $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
         
