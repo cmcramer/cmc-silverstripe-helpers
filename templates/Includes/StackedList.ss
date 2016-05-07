@@ -11,16 +11,18 @@
 				<% else %>$ItemTitle<% end_if %></dt>
 			<dd>
 				<% if $Image %>
-					<% if $ItemUrl %>
-						<a title="{$ItemTitle}" href="{$ItemUrl.LinkURL}">
-	  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
-						</a>
-					<% else %>
-						<a class="fancybox" title="{$ItemTitle}" 
-							href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
-	  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
-						</a>
-					<% end_if %>
+					<p class="float-left">
+						<% if $ItemUrl %>
+							<a title="{$ItemTitle}" href="{$ItemUrl.LinkURL}">
+		  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
+							</a>
+						<% else %>
+							<a class="fancybox" title="{$ItemTitle}" 
+								href="{$Image.FitMax(1200,800).Link}" rel="fancyboxgroup">
+		  						{$Image.CroppedImage($Up.ThumbnailWidth,$Up.ThumbnailHeight)}
+							</a>
+						<% end_if %>
+					</p>
 				<% end_if %>
 				$ItemContent</dd>
 		<% end_loop %>

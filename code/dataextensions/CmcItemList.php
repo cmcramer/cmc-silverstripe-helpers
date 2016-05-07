@@ -96,6 +96,9 @@ EOT;
 	
 	protected function _tabName() {
 	    if ($this->owner->ListItemName && $this->owner->ListItemName != '') {
+	        if (substr($this->owner->ListItemName, -1) == 'y') {
+	            return substr($this->owner->ListItemName, 0, -1) . 'ies';
+	        }
 	        return "{$this->owner->ListItemName}s";
 	    } else {
 	        return 'List Items';
