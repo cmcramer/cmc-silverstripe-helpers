@@ -25,6 +25,7 @@ class CmcItemWithImageList extends CmcItemList {
 	    'ListItemName' => 'Text',
         'ThumbnailWidth'    => 'Int',
         'ThumbnailHeight'   => 'Int',
+	    'ShowJumpMenu' => 'CmcBoolean',
 	);
 
 	
@@ -58,11 +59,12 @@ class CmcItemWithImageList extends CmcItemList {
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListItemName", "List Item Name"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailWidth', 'Thumbnail Width'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailHeight', 'Thumbnail Height'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('ShowJumpMenu', 'Show Jump Menu'));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
         $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
         
-        $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailWidth', 'Thumbnail Width'), 'ListItems');
-        $fields->addFieldToTab("Root.{$this->_tabName()}", new NumericField('ThumbnailHeight', 'Thumbnail Height'), 'ListItems');
         return $fields;
 	}
 	

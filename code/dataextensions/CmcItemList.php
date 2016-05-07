@@ -21,6 +21,8 @@ class CmcItemList extends DataExtension {
 	    'ListNotes'    => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
 	    'ListItemName' => 'Text',
+	    'TopAnchorMenu' => 'CmcBoolean',
+	    'BottomAnchorMenu' => 'CmcBoolean',
 	);
 	
 	private static $has_many = array(
@@ -47,6 +49,8 @@ class CmcItemList extends DataExtension {
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListItemName", "List Item Name"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('TopAnchorMenu', 'Show Anchor Menu Above'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('BottomAnchorMenu', 'Show Anchor Menu Beneath'));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
         $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
 		
