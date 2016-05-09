@@ -16,18 +16,30 @@ class CmcItemList extends DataExtension {
 	
 	protected static $_default_item_name = 'Item';
 	
+	
 	private static $db = array(
-	    'ListTitle'    => 'Text',
-	    'ListNotes'    => 'HTMLText',
+	    'ListTitle'            => 'Text',
+	    'ListNotes'            => 'HTMLText',
 	    'ExpandCollapseLabel'  => 'Text',
-	    'ListItemName' => 'Text',
-	    'TopAnchorMenu' => 'CmcBoolean',
-	    'BottomAnchorMenu' => 'CmcBoolean',
+	    'ListItemName'         => 'Text',
+	    'ItemsHaveImages'      => 'CmcBoolean',
+        'ThumbnailWidth'       => 'Int',
+        'ThumbnailHeight'      => 'Int',
+	    'ThumbnailsOnRight'    => 'CmcBoolean', 
+	    'TopAnchorMenu'        => 'CmcBoolean',
+	    'BottomAnchorMenu'     => 'CmcBoolean',
 	);
 	
 	private static $has_many = array(
 	         'ListItems'    => 'CmcListItem',
 	);
+	
+
+	private static $defaults = array(
+	    'ThumbnailWidth'    => 120,
+	    'ThumbnailHeight'   => 120,
+	);
+	
 	
 	
 	public function updateCMSFields(FieldList $fields) {
@@ -49,11 +61,23 @@ class CmcItemList extends DataExtension {
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListTitle", "List Title"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ListItemName", "List Item Name"));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new TextField("ExpandCollapseLabel", "Expand/Collapse Label (optional)"));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('ItemsHaveImages', 'Items have thumbnail image'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", 
+                                    $thumbnailWidth = new NumericField('ThumbnailWidth', 'Thumbnail Width'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", 
+                                    $thumbnailHeight = new NumericField('ThumbnailHeight', 'Thumbnail Height'));
+        $fields->addFieldToTab("Root.{$this->_tabName()}", 
+                                    $thumbnailsOnRight = new CheckboxField('ThumbnailsOnRight', 'Thumbnails on Right'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('TopAnchorMenu', 'Show Anchor Menu Above'));
         $fields->addFieldToTab("Root.{$this->_tabName()}", new CheckboxField('BottomAnchorMenu', 'Show Anchor Menu Beneath'));
 		$fields->addFieldToTab("Root.{$this->_tabName()}", $listItemsField);
         $fields->addFieldToTab("Root.{$this->_tabName()}", new HtmlEditorField("ListNotes", "List Notes"));
-		
+
+
+        $thumbnailWidth->displayIf('ItemsHaveImages')->isChecked();
+        $thumbnailHeight->displayIf('ItemsHaveImages')->isChecked();
+        $thumbnailsOnRight->displayIf('ItemsHaveImages')->isChecked();
+        
 	}
 
 	
@@ -112,6 +136,15 @@ EOT;
 	        return static::$_default_item_name;
 	    }
 	    
+	}
+	
+
+
+	public function onBeforeWrite() {
+	    if (! $this->owner->ID) {
+	        $this->owner->ThumbnailWidth = self::$defaults['ThumbnailWidth'];
+	        $this->owner->ThumbnailHeight = self::$defaults['ThumbnailHeight'];
+	    }
 	}
 	
 	

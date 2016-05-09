@@ -31,6 +31,8 @@ class CmcFaq extends CmcListItem {
         $fields = parent::getCMSFields();
         $fields->removeByName('ItemTitle');
         $fields->removeByName('ItemContent');
+        $fields->removeByName('ItemUrlID');
+        $fields->removeByName('StartNewSection');
         $fields->addFieldToTab('Root.Main', new HtmlEditorField('ItemContent','Answer'), 'ItemOrder');
         $fields->addFieldToTab('Root.Main', new TextField('ItemTitle', 'Question'), 'ItemContent');
         return $fields;

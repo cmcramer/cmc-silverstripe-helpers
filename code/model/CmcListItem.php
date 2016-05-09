@@ -13,15 +13,18 @@ class CmcListItem extends DataObject {
     );
         
     private static $has_one = array(
+        'Image'     => 'Image',
         'ItemUrl'   => 'Link',
         'ListPage'  => 'Page',  
     );
-    
+
+
     private static $summary_fields = array(
+        'Image.CMSThumbnail'        => '',
         'ItemTitleChopped'          => 'ItemTitle',
         'ItemContentChopped'        => 'ItemContent',
         'StartNewSection.NiceCMS'   => 'New Section',
-        'Hide.NiceCMS'              => 'Hidden',  
+        'Hide.NiceCMS'              => 'Hidden',
     );
     
     private static $default_sort = array(
@@ -35,6 +38,7 @@ class CmcListItem extends DataObject {
         $fields->removeByName('ItemContent');
         $fields->removeByName('ItemOrder');
         $fields->removeByName('ItemUrlID');
+        $fields->removeByName('Image');
         $fields->removeByName('Hide');
         $fields->addFieldToTab('Root.Main', new CheckboxField('Hide', 'Hide from public pages'));
         $fields->addFieldToTab('Root.Main', new NumericField('ItemOrder', 'Order'), 'Hide');
@@ -45,6 +49,13 @@ class CmcListItem extends DataObject {
         $linkField->setDescription('Makes Title/Thumbnail clickable in most templates.');
         $fields->addFieldToTab('Root.Main', $linkField, 'ItemContent');
         $fields->addFieldToTab('Root.Main', new CheckboxField('StartNewSection', 'Starts new section'), 'ItemContent');
+        
+        if ($this->ListPage()->ItemsHaveImages) {
+            $fields->addFieldToTab('Root.Main', $imageField = new UploadField('Image'));
+        } elseif ($this->ListPage()->ID == '') {
+            $fields->addFieldsToTab('Root.Main', new LabelField('ImageNote','If this list allows images, you can add the image after item is saved.'));
+        }
+        
         return $fields;
     }
     

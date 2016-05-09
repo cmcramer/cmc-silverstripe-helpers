@@ -3,7 +3,9 @@
  * 
  * @author cmc
  * 
- * Expandable FAQ List - Nearly identical to ExandCollapseList
+ * Expandable FAQ List - Shares code with CmcItemList
+ *
+ * @see if client wants images, sections, urls see CmcItemList, CmcListItem
  * 
  */
 class CmcFaqList extends DataExtension {
@@ -11,6 +13,7 @@ class CmcFaqList extends DataExtension {
 
 	private static $singular_name = 'FAQ List';
 	private static $plural_name = 'FAQ Lists';
+	
 	
 	private static $db = array(
 	    'ListTitle'            => 'Text',
@@ -20,6 +23,8 @@ class CmcFaqList extends DataExtension {
 	private static $has_many = array(
 	         'Faqs'    => 'CmcFaq',
 	);
+	
+
 	
 	
 	public function updateCMSFields(FieldList $fields) {
