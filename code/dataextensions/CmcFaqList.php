@@ -30,7 +30,7 @@ class CmcFaqList extends DataExtension {
 	public function updateCMSFields(FieldList $fields) {
 	    
         // Create a default configuration for the new GridField, allowing record editing
-        $faqGridConfig = GridFieldConfig_RelationEditor::create();
+        $faqGridConfig = GridFieldConfig_RelationEditor::create(50);
         $faqGridConfig->addComponent(new GridFieldSortableRows('ItemOrder'));
         
         // Create a gridfield to hold the faqs relationship
