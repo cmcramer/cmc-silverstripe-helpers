@@ -21,6 +21,10 @@ class CmcRedirectorPageWithQuery extends RedirectorPage {
 	    'QueryString'          => 'Text',
 	);
 	
+	public function __construct($name = null, $defaultVal = 0) {
+	    Requirements::css(CMC_HELPER_MODULE_DIR.'/css/cmcrediretcorpagewithquery.css');
+	    parent::__construct($name);
+	}
 	
 	public function getCMSFields() {
 	    $fields = parent::getCMSFields();
