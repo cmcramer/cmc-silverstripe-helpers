@@ -47,6 +47,9 @@ This is a collection of DataExtensions and DataObjects and Helpers that are ofte
 - CmcYouTubeEmbed - YouTube Embed with options editable in CMS. 
 - CmcListItem - List item with Image and Link. Image field visibility based on containing list settings
 - CmcFaqItem - Simplified list item for FAQ
+
+#####Pages
+- CmcRedirectorPageWithQuery - Extends RedirectorPage. Adds a query/route string field for use with internal pages.
 	
 	
 ##Other Resources
