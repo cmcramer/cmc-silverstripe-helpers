@@ -31,6 +31,20 @@ class CmcListItem extends DataObject {
         'ItemOrder',
     );
     
+    //Allow Content Editor access
+    public function canView($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canEdit($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canDelete($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    public function canCreate($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+    
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeByName('ListPageID');
