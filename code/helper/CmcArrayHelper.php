@@ -19,18 +19,27 @@ class CmcArrayHelper {
      * 
      * @param Array $arrToClean
      * @param Array $params, allowable keys
+     *      repChar     ''      | set to character to use to replace, non alphanumeric
+     *                            allowable chars '', ' ', '-', '|', '+', '*', '%'
      *      skipKeys    false   | if true, doesn't clean keys
      *      allowSpace  true    | if false, no spaces are allowed in cleaned values
      *                  false (for keys)
      *      allowDash   true    | if false, dashes are stripped from string
-     *      useSpace    false   | if true, replaces with space instead of ''
-     *      useDash     false   | if true, replaces with dash instead of ''
-     *                              on allowSpace or allowDash options
      *      lowerCase   true    | if false, case unchanged
      *      
      * @return array
      */
     public static function cleanArray($arrToClean, $params=array()) {
+        //create param aarray for repChar
+        $repChar = '';
+        if ( isset($params['repChar']) && 
+                in_array($params['repChar'], 
+                        array('', ' ', '-', '|', '+', '*', '%'))
+            ) {
+            $repChar = false;
+        }
+        $arrRepChar = CmcArrayHelper::paramToArray(count($arrToClean), $repChar);
+        
         //create param aarray for allowSpace
         $allowSpace = true;
         if (isset($params['allowSpace']) && $params['allowSpace'] == false) {
@@ -46,21 +55,12 @@ class CmcArrayHelper {
         
         
         //Set $cleanArray
-        if ( isset($params['useSpace']) && $params['useSpace'] == true ) {
-            $cleanArray = array_map('CmcStringHelper::alphanumericWithSpaces', 
+        $cleanArray = array_map('CmcStringHelper::alphanumericWithCustom',
                                      $arrToClean,
-                                     $arrAllowDash);
-        } elseif ( isset($params['useDash']) && $params['useDash'] == true ) {
-            //default
-            $cleanArray = array_map('CmcStringHelper::alphanumericWithDashes',
-                                     $arrToClean,
-                                     $arrAllowSpace);
-        } else {
-            $cleanArray = array_map('CmcStringHelper::alphanumeric',
-                                     $arrToClean,
+                                     $arrRepChar,
                                      $arrAllowSpace,
                                      $arrAllowDash);
-        }
+        
         
         //make lower case unless set false
         if (  ! isset($params['lowerCase'])   ||   ! ($params['lowerCase'] == false) )  {
@@ -69,22 +69,36 @@ class CmcArrayHelper {
         
         
         //clean keys unless set to skip
+        $cleanKeys = array_keys($arrToClean);
         if ( ! isset($params['skipKeys'])   || ! ($params['skipKeys'] == true)) {
-            $arrKeys = array_keys($arrToClean);
             //cleaning array of keys, don't want endless loop
             $params['skipKeys'] = true;
             //don't allow spaces or dashes in keys
             $params['allowSpace'] = false;
             $params['allowDash']  = false;
             //clean the keys array
-            $cleanKeys = CmcArrayHelper::cleanArray($arrKeys, $params);
+            $cleanKeys = CmcArrayHelper::cleanArray($cleanKeys, $params);
             //combine the cleaned keys and  values
-            $cleanArray = array_combine($cleanKeys, array_values($cleanArray));
         }
+        //keys get wiped out even if skipped if not combined after mapping
+        $cleanArray = array_combine($cleanKeys, array_values($cleanArray));
         
         return $cleanArray;
         
     }
+    
+    
+    
+    public static function spacesInValuesToPlus($arrToClean) {
+        $arrKeys = array_keys($arrToClean);
+        $arrPlus = CmcArrayHelper::paramToArray(count($arrToClean), '+');
+        $arrConverted = array_map('CmcStringHelper::convertSpaces', $arrToClean, $arrPlus);
+        return array_combine($arrKeys, array_values($arrConverted));
+    }
+    
+    
+    
+    
     
     /**
      * Creates array of length passed with all values set to $value
