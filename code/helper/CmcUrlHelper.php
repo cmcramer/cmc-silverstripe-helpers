@@ -9,13 +9,14 @@ class CmcUrlHelper {
      * @param Array $arr
      * @return string
      */
-    public static function doSlashedString($arr, $removeSubmit=true) {
+    public static function doSlashedString($arr, $skipKeysWith='', $removeSubmit=true) {
         $arrClean = CmcArrayHelper::spacesInValuesToPlus(CmcArrayHelper::cleanArray($arr));
         $strQuery = '';
         $first = true;
         foreach ($arrClean as $key => $value) {
             //skip if no value or submit
-            if  ( $value == '' || ($key =='submit' && $removeSubmit) ) {
+            if  ( $value == '' || ($key =='submit' && $removeSubmit) 
+                    || ($skipKeysWith != '' && stristr($key, $skipKeysWith)) ) {
                 continue;
                 
             //otherwise append key/value to string

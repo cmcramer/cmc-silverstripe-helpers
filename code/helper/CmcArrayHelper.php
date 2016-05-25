@@ -3,6 +3,9 @@
  * String utility functions
  */
 class CmcArrayHelper {
+    
+    private static $_default_rep_char = '';
+    private static $_default_other_allowable_chars = ' _-';
 
     /**
      * @description Default settings return cleaned array
@@ -19,47 +22,42 @@ class CmcArrayHelper {
      * 
      * @param Array $arrToClean
      * @param Array $params, allowable keys
-     *      repChar     ''      | set to character to use to replace, non alphanumeric
-     *                            allowable chars '', ' ', '-', '|', '+', '*', '%'
-     *      skipKeys    false   | if true, doesn't clean keys
-     *      allowSpace  true    | if false, no spaces are allowed in cleaned values
-     *                  false (for keys)
-     *      allowDash   true    | if false, dashes are stripped from string
-     *      lowerCase   true    | if false, case unchanged
+     *      repChar             ''      | set to character to use to replace, non alphanumeric
+     *                                      allowable replacement chars 
+     *                                      '', ' ', '-', '_', '|', '+', '*', '%', '^'
+     *      skipKeys            false   | if true, keys are left unchanged
+     *      otherAllowableChars ' -_'   | allows space, dash, underscore by default
+     *      lowerCase           true    | if false, case unchanged
      *      
      * @return array
      */
     public static function cleanArray($arrToClean, $params=array()) {
         //create param aarray for repChar
-        $repChar = '';
+        $repChar = self::$_default_rep_char;
         if ( isset($params['repChar']) && 
                 in_array($params['repChar'], 
-                        array('', ' ', '-', '|', '+', '*', '%'))
+                        array('', ' ', '-', '_', '|', '+', '*', '%', '^', ))
             ) {
             $repChar = false;
         }
         $arrRepChar = CmcArrayHelper::paramToArray(count($arrToClean), $repChar);
         
-        //create param aarray for allowSpace
-        $allowSpace = true;
-        if (isset($params['allowSpace']) && $params['allowSpace'] == false) {
-            $allowSpace = false;
+        $otherAllowableChars = self::$_default_other_allowable_chars;
+        if ( isset($params['otherAllowableChars']) ) {
+            $otherAllowableChars = $params['otherAllowableChars'];
         }
-        $arrAllowSpace = CmcArrayHelper::paramToArray(count($arrToClean), $allowSpace);
-        //create param array for allowDash
-        $allowDash = true;
-        if (isset($params['allowDash']) && $params['allowDash'] == false) {
-            $allowDash = false;
+        //string contains dash move to end or preg won't work
+        if (stristr($otherAllowableChars, '-')) {
+            $otherAllowableChars = str_replace('-', '', $otherAllowableChars).'-';
         }
-        $arrAllowDash = CmcArrayHelper::paramToArray(count($arrToClean), $allowDash);
+        $arrAllowableChars = CmcArrayHelper::paramToArray(count($arrToClean), $otherAllowableChars);
         
         
         //Set $cleanArray
         $cleanArray = array_map('CmcStringHelper::alphanumericWithCustom',
                                      $arrToClean,
                                      $arrRepChar,
-                                     $arrAllowSpace,
-                                     $arrAllowDash);
+                                     $arrAllowableChars);
         
         
         //make lower case unless set false
@@ -71,11 +69,9 @@ class CmcArrayHelper {
         //clean keys unless set to skip
         $cleanKeys = array_keys($arrToClean);
         if ( ! isset($params['skipKeys'])   || ! ($params['skipKeys'] == true)) {
-            //cleaning array of keys, don't want endless loop
+            //Don't check keys for key arrays
             $params['skipKeys'] = true;
-            //don't allow spaces or dashes in keys
-            $params['allowSpace'] = false;
-            $params['allowDash']  = false;
+            $params['otherAllowableChars'] = str_replace(' ', '', $otherAllowableChars);
             //clean the keys array
             $cleanKeys = CmcArrayHelper::cleanArray($cleanKeys, $params);
             //combine the cleaned keys and  values
@@ -101,6 +97,7 @@ class CmcArrayHelper {
     
     
     /**
+     * Primarily used by array_to provide additional arguments to functions
      * Creates array of length passed with all values set to $value
      * @param unknown $arrLen
      * @param unknown $param
