@@ -155,6 +155,10 @@ FaqPage:
   extensions:
     - CmcFaqList
 ```
+
+8) ArrayHelper useful for running StringHelper functions on arrays and cleaning up input
+
+9) UrlHelper useful for creating slashed url from array data such as posted search form
 ####Thanks to SilverStripe and the SilverStripe Community
 
 
