@@ -60,6 +60,13 @@ class CmcExtendedImage extends DataExtension {
     }
     
     public function onBeforeWrite() {
+        //Check the extension of the image to make sure we are dealing with a JPEG file
+        //We do not need to process PNG images - they do not contain Exchangeable image file format (Exif) data
+        $imageFileExt = strtolower($this->owner->getExtension());
+       
+        if(!in_array($imageFileExt, array('jpeg', 'jpg'))) {
+            return;
+        }
         if (! self::$_has_written ) {
             //If DateTime exists in Exif info save it
             if ($this->ExifTime() != '') {
@@ -108,6 +115,7 @@ class CmcExtendedImage extends DataExtension {
         //Check the extension of the image to make sure we are dealing with a JPEG file
         //We do not need to process PNG images - they do not contain Exchangeable image file format (Exif) data
         $imageFileExt = strtolower($this->owner->getExtension());
+       
         if(!in_array($imageFileExt, array('jpeg', 'jpg'))) {
             return;
         }
@@ -147,7 +155,10 @@ class CmcExtendedImage extends DataExtension {
      * @return array
      */
     public function Exif(){
-        return exif_read_data($this->ImageFullPath());
+        if ($this->ImageFullPath()  ) {
+            return exif_read_data($this->ImageFullPath());
+        }
+        return false;
     }
     /**
      * 
