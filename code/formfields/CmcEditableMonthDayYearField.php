@@ -1,17 +1,21 @@
 <?php
-class EditableMonthDayYearField extends EditableDateField {
+class CmcEditableMonthDayYearField extends EditableDateField {
 
     private static $singular_name = 'MonthDayYear Field';
 
     private static $plural_name = 'MonthDayYear Field';
 
     public function getIcon() {
-        return  USERFORMS_DIR . '/images/editablemonthdayyearfield.png';
+        return  CMC_HELPER_MODULE_DIR . '/images/editablemonthdayyearfield.png';
     }
 
-
+    private static $db = array(
+        'DefaultToToday' => 'Boolean' // from CustomSettings
+    );
+    
+    
     public function getFormField() {
-        $defaultValue = ($this->getSetting('DefaultToToday')) ? date('Y-m-d') : $this->Default;
+        $defaultValue = ($this->DefaultToToday) ? date('Y-m-d') : $this->Default;
         $field = EditableDateField_FormField::create( $this->Name, $this->Title, $defaultValue);
         $field->setConfig('showcalendar', false)
         ->setConfig('dmyfields', true)
