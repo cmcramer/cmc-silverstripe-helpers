@@ -1,21 +1,4 @@
-//(function ($) {
-//	
-//	jQuery.fn.extend = function(dateString) {
-//		return "It works";
-//	}
-//	
-//} (jQuery));
-
-/**
-
-//date string format YYYY-MM-DD
-$.snowDateFormat = function(dateString) {
-    var dateArr = dateString.split('-');
-    var formattedDate = dateArr['2'
-    
-    
-};
-*/
+//javascript functions to format date strings
 
 var cmcArrShortMonthNames = [
                         "Jan",
