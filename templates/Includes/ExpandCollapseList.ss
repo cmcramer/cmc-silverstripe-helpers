@@ -9,6 +9,7 @@
 	 		class="ss-broken">Collapse All $ExpandCollapseLabel</a></p>
 	<dl id="TJK_DL">
 		<% loop $PublicList %>
+             <a name="$ItemAnchorName" id="$ItemAnchorName" />
 			<dt>$ItemTitle</dt>
 			<dd>
 				<% if $Image %>

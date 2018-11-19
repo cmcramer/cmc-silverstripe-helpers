@@ -86,7 +86,15 @@ class CmcListItem extends DataObject {
     public function ItemContentChopped($maxChars=50) {
         return CmcHtmlTextHelper::NoHtmlChop($this->ItemContent, $maxChars);
     }
-    
+
+    public function ItemAnchorName() {
+        if ($this->ItemTitle && $this->ItemTitle != '') {
+            return strtolower(CmcStringHelper::alphanumericWithDashes($this->ItemTitle));
+        }
+        return '';
+    }
+
+
     //should be built in, but can't find it.
     ///Based on public function singular_name() in DataObject
 	//Has to be copied to derived class to grab private property
