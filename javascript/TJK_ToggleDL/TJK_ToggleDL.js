@@ -52,4 +52,16 @@ if (document.getElementById && document.getElementsByTagName){
 		zDT[i].className='DTplus';
 		}
 	}
+
+    var url = document.location.toString();
+    if ( url.match('#') ) {
+        var node_id = url.split('#')[1]
+        var outer_node=document.getElementById('TJK_DL').getElementsByTagName('dt');
+        for (i=0; i < outer_node.length; i++) {
+            if (outer_node[i].id == node_id) {
+                TJK_doToggleDL(i)
+                break;
+            }
+        }
+    }
 }
