@@ -9,6 +9,8 @@ class CmcStringHelper {
      *              and replaced with $repChar
      */
     public static function alphanumericWithCustom($str, $repChar='', $allowedChars='') {
+
+        $str = trim($str); #added 20181205@10:37
         $strSafe = preg_replace("/[^A-Za-z0-9{$allowedChars}]/", $repChar, $str);
     
         return CmcStringHelper::removeDupes($strSafe);
