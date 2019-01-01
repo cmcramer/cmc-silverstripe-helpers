@@ -8,5 +8,4 @@
 	</div>
 	<div><a href="http://www.instagram.com/{$InstagramUser}/"
 		title="{$InstagramFeedTitle}">Follow us on Instagram</a></div>
-	<!-- End Instagram feed -->
-</div>
+<!-- End Instagram feed -->
