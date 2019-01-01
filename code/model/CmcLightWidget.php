@@ -57,7 +57,7 @@ class CmcLightWidget extends DataObject {
     
     private static $display_fields = array(
         'WidgetTitle'  => 'Weather Widget',
-        'InstagramUser' => 'Instagram User'
+        'InstagramUser' => 'Instagram User',
     );
 
     private static $defaults = array(
