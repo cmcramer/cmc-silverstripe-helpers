@@ -76,4 +76,8 @@ class CmcLightWidget extends DataObject {
     }
 
 
+    public function WidgetShortId() {
+        return substr($this->WidgetId,0,10);
+    }
+
 }

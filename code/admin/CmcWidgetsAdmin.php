@@ -1,5 +1,5 @@
 <?php
-class CmcTrailsAdmin extends ModelAdmin {
+class CmcWidgetAdmin extends ModelAdmin {
     private static $managed_models = array(
         'CmcLightWidget',
     );
